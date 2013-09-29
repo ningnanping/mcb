@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<!-- Appenders -->
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p:%d{yyyy-MM-dd HH:mm:ss,SSS} %c:%L - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="file" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="log/xingzhe.log" />
+		<param name="Append" value="true" />
+		<!-- 以日为单位输出LOG文件，每日输出一个LOG文件 -->
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<param name="Threshold" value="debug" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p:%d{yyyy-MM-dd HH:mm:ss,SSS} %c:%L - %m%n" />
+		</layout>
+	</appender>
+
+	<!--定义本系统的日志输出级别 -->
+	<logger name="com.xingzhe">
+		<level value="debug" />
+	</logger>
+
+	<!--ibatis的系统日志输出 -->
+	<logger name="org.mybatis.spring">
+		<level value="info"></level>
+	</logger>
+	<logger name="druid.sql">
+		<level value="info"></level>
+	</logger>
+	
+	<!--sql语句的日志输出 -->
+	<logger name="java.sql">
+		<level value="info"></level>
+	</logger>
+	
+	<logger name="org.springframework.beans">
+		<level value="info"></level>
+	</logger>
+	
+	<logger name="org.springframework.web">
+		<level value="info"></level>
+	</logger>
+		
+	<logger name="org.springframework.core">
+		<level value="info"></level>
+	</logger>
+	
+	<logger name="org.springframework.context">
+		<level value="info"></level>
+	</logger>
+	
+	<logger name="org.springframework.jndi">
+		<level value="info"></level>
+	</logger>
+	
+	<logger name="org.springframework.aop">
+		<level value="info"></level>
+	</logger>
+	
+	<logger name="org.springframework.jdbc">
+		<level value="info"></level>
+	</logger>
+	
+	<logger name="org.springframework.test">
+		<level value="debug"></level>
+	</logger>
+		
+	<!-- Root Logger -->
+	<root>
+		<priority value="debug" />
+		<appender-ref ref="console" />
+		<appender-ref ref="file" />
+	</root>
+</log4j:configuration>

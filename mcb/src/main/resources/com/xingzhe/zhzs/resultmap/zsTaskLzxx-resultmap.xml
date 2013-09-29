@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xingzhe.zhzs.task.mapper.ZsTaskLzxxMapper">
+
+	<resultMap type="com.xingzhe.zhzs.task.domain.ZsTaskLzxx" id="getZsTaskLzxxForPage">
+		<result property="rwslh" column="rwslh" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="blryDm" column="blry_Dm" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="blryMc" column="blry_Mc" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="blrswjgDm" column="blrswjg_Dm" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="blrswjgMc" column="blrswjg_Mc" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="blDate" column="bl_Date" javaType="java.util.Date"
+			jdbcType="DATE" />
+		<result property="shspYj" column="shsp_Yj" javaType="java.lang.String"
+			jdbcType="DATE" />
+		<result property="hjbj" column="hjbj" javaType="java.lang.String"
+			jdbcType="DATE" />
+		<result property="url" column="url" javaType="java.lang.String"
+			jdbcType="DATE" />
+	</resultMap>
+
+	<sql id="sqlZsTaskLzxx">
+		<![CDATA[SELECT
+				    RWSLH,
+				    BLRY_MC,
+				    BLRSWJG_DM,
+				    BLRSWJG_MC,
+				    BL_DATE,
+				    SHSP_YJ,
+				    HJBJ,
+				    BLRY_DM,
+				    URL
+				FROM
+				    T_ZS_TASK_LZXX WHERE RWSLH = #{rwslh} ORDER BY BL_DATE
+		]]>
+	</sql>
+	
+	<!-- 流转信息列表 -->
+	<select id="getZsTaskLzxxForPage" resultMap="getZsTaskLzxxForPage">
+		<include refid="com.xingzhe.zhzs.task.mapper.ZsTaskLzxxMapper.sqlZsTaskLzxx" />
+	</select>
+	
+	<select id="getZsTaskLzxxForTotalCount" resultType="java.lang.Integer">
+		<include refid="com.xingzhe.framework.mapper.SqlMapper.totalCountStart" />
+		<include refid="com.xingzhe.zhzs.task.mapper.ZsTaskLzxxMapper.sqlZsTaskLzxx" />
+		<include refid="com.xingzhe.framework.mapper.SqlMapper.totalCountEnd" />
+	</select>
+	
+</mapper>
