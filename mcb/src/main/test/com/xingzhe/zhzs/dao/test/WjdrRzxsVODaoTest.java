@@ -1,33 +1,19 @@
 package com.xingzhe.zhzs.dao.test;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cctc.framework.test.BaseTestCase;
-import com.xingzhe.system.execle.dao.ExcelDao;
-import com.xingzhe.system.execle.util.ExcelOperateUtil;
 import com.xingzhe.zhzs.dao.WjdrRzxsVODao;
 import com.xingzhe.zhzs.domain.WjdrRzxsVO;
-import com.xingzhe.framework.util.DateUtil;
 
 public class WjdrRzxsVODaoTest extends BaseTestCase {
 
 	@Autowired
 	private WjdrRzxsVODao<WjdrRzxsVO> wjdrRzxsVODao;
 
-	@Autowired
-	private ExcelDao wjdrExcelDao;
-	
-	@Autowired
-	ExcelOperateUtil excelOperateUtil;
 
 	// @Test
 	public void test1() {
@@ -46,27 +32,6 @@ public class WjdrRzxsVODaoTest extends BaseTestCase {
 		System.out.println(wjdrRzxsVODao.getTotalCount(map));
 	}
 
-	@Test
-	public void test3() {
-		
-		File file = new File("D:/1.xls");
-		
-		Map<String, String> systemMap = new HashMap<String, String>();
-		systemMap.put("ssq", DateUtil.dateToStr(new Date(),DateUtil.YYYY_MM_DD));
-		systemMap.put("strWjlx", "T999");
-		systemMap.put("GUID", UUID.randomUUID().toString());
-		systemMap.put("czrydm", "CZ00005");
-		systemMap.put("sjfw", "");
-		try {
-			excelOperateUtil.readfile(null, systemMap);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		// System.out.println(wjdrExcelDao.getWjdrExcelList("J016"));
-	}
-	
 	//@Test
 	public void  test4(){
 		

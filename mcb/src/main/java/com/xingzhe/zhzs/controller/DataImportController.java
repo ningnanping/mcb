@@ -23,7 +23,6 @@ import com.xingzhe.framework.domain.DataGrid;
 import com.xingzhe.framework.domain.ResultObj;
 import com.xingzhe.framework.util.DateUtil;
 import com.xingzhe.framework.util.UuidUtil;
-import com.xingzhe.system.execle.util.ExcelOperateUtil;
 import com.xingzhe.zhzs.service.WjdrRzxsVOService;
 
 @Controller
@@ -32,9 +31,6 @@ public class DataImportController extends BaseController {
 
 	@Autowired
 	private WjdrRzxsVOService wjdrRzxsVOService;
-
-	@Autowired
-	private ExcelOperateUtil excelOperateUtil;
 
 	@ResponseBody
 	@RequestMapping(value = "/log.json")
@@ -123,13 +119,13 @@ public class DataImportController extends BaseController {
 		systemMap.put("czrydm", lrry);
 		systemMap.put("sjfw", sjfw);
 		Map<String, String> resultmap = null;
-		try {
-			resultmap = excelOperateUtil.readfile(in,systemMap);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			resultmap = excelOperateUtil.readfile(in,systemMap);
+//		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 		//
 		 wjdrRzxsVOService.addImportDataLog(xh, wjlx, sjfw, lrry,
 		 resultmap.get("DRS"), resultmap.get("CGS"),
