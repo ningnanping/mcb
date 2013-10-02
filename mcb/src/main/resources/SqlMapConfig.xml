@@ -12,14 +12,16 @@
 		<!-- 给予被嵌套的resultMap以字段-属性的映射支持 -->
 		<setting name="autoMappingBehavior" value="FULL" />
 	</settings>
-<!-- 	<mappers> -->
-<!-- 		<mapper resource="com/xingzhe/zhzs/resultmap/wjdrRzxsVO-resultmap.xml" /> -->
-<!-- 		<mapper resource="com/xingzhe/zhzs/resultmap/base-resultmap.xml" /> -->
-<!-- 		<mapper resource="com/xingzhe/zhzs/resultmap/zsTask-resultmap.xml" /> -->
-<!-- 	</mappers> -->
-	<!-- <plugins> -->
-	<!-- <plugin interceptor="com.google.code.shardbatis.plugin.ShardPlugin"> -->
-	<!-- <property name="shardingConfig" value="shard_config.xml" /> -->
-	<!-- </plugin> -->
-	<!-- </plugins> -->
+	<!-- <mappers> -->
+	<!-- <mapper resource="com/xingzhe/zhzs/resultmap/wjdrRzxsVO-resultmap.xml" 
+		/> -->
+	<!-- <mapper resource="com/xingzhe/zhzs/resultmap/base-resultmap.xml" /> -->
+	<!-- <mapper resource="com/xingzhe/zhzs/resultmap/zsTask-resultmap.xml" 
+		/> -->
+	<!-- </mappers> -->
+	<plugins>
+		<plugin interceptor="com.google.code.shardbatis.plugin.ShardPlugin">
+			<property name="shardingConfig" value="shard_config.xml" />
+		</plugin>
+	</plugins>
 </configuration>

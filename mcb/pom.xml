@@ -12,6 +12,14 @@
 	</properties>
 	<repositories>
 		<repository>
+			<id>shardbaits</id>
+			<name>shardbaits repository</name>
+			<url>http://shardbatis.googlecode.com/svn/trunk/repository</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
 			<id>opensesame</id>
 			<name>Alibaba OpenSource Repsoitory</name>
 			<url>http://code.alibabatech.com/mvn/releases/</url>
@@ -21,14 +29,7 @@
 			<name>JBoss repository</name>
 			<url>http://127.0.0.1/nexus/content/groups/public</url>
 		</repository>
-		<repository>
-			<id>shardbaits</id>
-			<name>shardbaits repository</name>
-			<url>http://shardbatis.googlecode.com/svn/trunk/repository</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
+
 		<repository>
 			<id>offical</id>
 			<name>Maven Official Repository</name>
@@ -144,12 +145,12 @@
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
-			<version>3.2.2</version>
+			<version>3.2.3</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis-spring</artifactId>
-			<version>1.2.0</version>
+			<version>1.2.1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.alibaba</groupId>
@@ -181,6 +182,11 @@
 			<artifactId>hessian</artifactId>
 			<version>4.0.33</version>
 		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.shardbatis</groupId> -->
+<!-- 			<artifactId>shardbatis</artifactId> -->
+<!-- 			<version>2.0.0B</version> -->
+<!-- 		</dependency> -->
 		<!-- <dependency> -->
 		<!-- <groupId>org.springframework.data</groupId> -->
 		<!-- <artifactId>spring-data-redis</artifactId> -->
