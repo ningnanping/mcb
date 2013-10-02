@@ -11,14 +11,26 @@ import java.sql.SQLException;
  */
 public abstract class BaseDao<T> {
 	
+	/**
+	 * 保存
+	 * @param entity
+	 * @throws SQLException
+	 */
 	public void save(T entity)throws SQLException {
 	}
+	
+	/**
+	 * 更新
+	 * @param entity
+	 * @throws SQLException
+	 */
 	public void update(T entity)throws SQLException {
 	}
-	public void del(T entity)throws SQLException {
-	}
-	public void del(int id)throws SQLException {
-	}
-	public void del(String id)throws SQLException {
+	/**
+	 * 删除 根据对象（复杂对象，int，String 都可以）
+	 * @param entity
+	 * @throws SQLException
+	 */
+	public void del(Object entity)throws SQLException {
 	}
 }

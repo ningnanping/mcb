@@ -1,7 +1,5 @@
 package com.xingzhe.zhzs.task.domain;
 
-import java.util.Date;
-
 import com.xingzhe.framework.domain.BaseObj;
 
 public class ZsTaskSearch extends BaseObj {

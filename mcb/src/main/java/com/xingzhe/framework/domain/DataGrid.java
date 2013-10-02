@@ -2,6 +2,11 @@ package com.xingzhe.framework.domain;
 
 import java.util.List;
 
+/**
+ * 表格  用于分页
+ * @author LuTang
+ *
+ */
 public class DataGrid extends BaseObj {
 
 	private static final long serialVersionUID = -1324387508591951971L;

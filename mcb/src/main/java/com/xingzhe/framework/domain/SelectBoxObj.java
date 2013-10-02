@@ -1,6 +1,11 @@
 package com.xingzhe.framework.domain;
 
 
+/**
+ * 下拉列表框
+ * @author LuTang
+ *
+ */
 public class SelectBoxObj extends BaseObj {
 
 	private static final long serialVersionUID = -1129725639111648194L;

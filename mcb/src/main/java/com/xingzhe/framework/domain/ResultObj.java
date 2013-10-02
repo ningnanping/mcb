@@ -1,5 +1,10 @@
 package com.xingzhe.framework.domain;
 
+/**
+ * 返回结果
+ * @author LuTang
+ *
+ */
 public class ResultObj extends BaseObj{
 
 	private static final long serialVersionUID = 1L;

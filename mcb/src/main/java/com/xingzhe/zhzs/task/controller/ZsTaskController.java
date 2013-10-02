@@ -278,9 +278,9 @@ public class ZsTaskController extends BaseController {
 			// path是指欲下载的文件的路径。
 			File file = new File(ctxPath + fileName);
 			// 取得文件名。
-			String filename = file.getName();
+//			String filename = file.getName();
 			// 取得文件的后缀名。
-			String ext = filename.substring(filename.lastIndexOf(".") + 1).toUpperCase();
+//			String ext = filename.substring(filename.lastIndexOf(".") + 1).toUpperCase();
 
 			// 以流的形式下载文件。
 			InputStream fis = new BufferedInputStream(new FileInputStream(ctxPath + fileName));
