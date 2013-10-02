@@ -194,7 +194,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.2</version>
+			<version>5.1.26</version>
 		</dependency>
 		<!-- poi java 对office 的处理 -->
 		<dependency>
