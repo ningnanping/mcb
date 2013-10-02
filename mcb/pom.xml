@@ -123,19 +123,19 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>oracle</groupId> -->
-<!-- 			<artifactId>ojdbc14</artifactId> -->
-<!-- 			<version>1.0</version> -->
-<!-- 			<scope>system</scope> -->
-<!-- 			<systemPath>E:\zhzs\trunk\zhzs\src\main\webapp\WEB-INF\lib\ojdbc6.jar</systemPath> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>javax.servlet</groupId> -->
-<!-- 			<artifactId>servlet-api</artifactId> -->
-<!-- 			<version>2.5</version> -->
-<!-- 			<scope>provided</scope> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>oracle</groupId> -->
+		<!-- <artifactId>ojdbc14</artifactId> -->
+		<!-- <version>1.0</version> -->
+		<!-- <scope>system</scope> -->
+		<!-- <systemPath>E:\zhzs\trunk\zhzs\src\main\webapp\WEB-INF\lib\ojdbc6.jar</systemPath> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>javax.servlet</groupId> -->
+		<!-- <artifactId>servlet-api</artifactId> -->
+		<!-- <version>2.5</version> -->
+		<!-- <scope>provided</scope> -->
+		<!-- </dependency> -->
 		<dependency>
 			<groupId>taglibs</groupId>
 			<artifactId>standard</artifactId>
@@ -190,6 +190,11 @@
 			<groupId>redis.clients</groupId>
 			<artifactId>jedis</artifactId>
 			<version>2.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.2</version>
 		</dependency>
 		<!-- poi java 对office 的处理 -->
 		<dependency>
