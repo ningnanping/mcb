@@ -5,8 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>昌吉市综合治税信息管理系统</title>
-<link rel="stylesheet" type="text/css" href="./css/login.css">
-<c:import url="/base.jsp"/> 
+<%@ include file="/base.jsp"%>
+<link rel="stylesheet" type="text/css" href="<%=path%>/css/login.css">
 <script>
 $(function(){
 	// 按键事件
@@ -88,9 +88,9 @@ $(function(){
         </form>
 	</div>
 	<div class="buttonSec">
-            <img src="img/ok.gif" id="ok" border="0" style="cursor: pointer;padding-left: 10px;">
-            <img src="img/cancel.gif" id="cancel" border="0" style="cursor: pointer;padding-left: 10px;">
-            <img src="img/xgmm.gif" id="modifypwd" border="0" style="cursor: pointer;padding-left: 10px;">
+            <img src="<%=path%>/img/ok.gif" id="ok" border="0" style="cursor: pointer;padding-left: 10px;">
+            <img src="<%=path%>/img/cancel.gif" id="cancel" border="0" style="cursor: pointer;padding-left: 10px;">
+            <img src="<%=path%>/img/xgmm.gif" id="modifypwd" border="0" style="cursor: pointer;padding-left: 10px;">
     </div>
 	<div class="co">
 			<table border="0" align="center" cellpadding="0" cellspacing="0">

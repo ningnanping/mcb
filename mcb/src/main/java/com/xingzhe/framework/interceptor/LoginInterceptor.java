@@ -29,6 +29,7 @@ public class LoginInterceptor implements HandlerInterceptor  {
 	@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
+		log.debug(request.getRequestURL().toString());  
 		log.debug("==============执行顺序: 1、preHandle================");  
 		
 		//在Cookie获取值
