@@ -15,18 +15,15 @@
 	<mvc:annotation-driven />
 	<mvc:default-servlet-handler />
 	<context:component-scan base-package="com.xingzhe.*.controller" />
-
-	<mvc:resources location="/WEB-INF/resourse/js/" mapping="/scripts/**" />
-	<mvc:resources location="/WEB-INF/resourse/css/" mapping="/css/**" />
-	<mvc:resources location="/WEB-INF/resourse/images/" mapping="/img/**" />
-	<mvc:resources location="/WEB-INF/resourse/swf/" mapping="/swf/**" />
-	<mvc:resources location="/WEB-INF/resourse/xml/" mapping="/xml/**" />
-	<mvc:resources location="/WEB-INF/resourse/json/" mapping="/json/**" />
 	
 	<mvc:interceptors> 
 		<mvc:interceptor>
 			<mvc:mapping path="/**" /><!-- 如果不配置或/*,将拦截所有的Controller -->  
-			<mvc:exclude-mapping path="/*/login.html"/>
+			<mvc:exclude-mapping path="/*/login.html*"/>
+			<mvc:exclude-mapping path="/login.html"/> 
+			<mvc:exclude-mapping path="/img/**"/> 
+			<mvc:exclude-mapping path="/scripts/**"/> 
+			<mvc:exclude-mapping path="/css/**"/> 
 			<bean class="com.xingzhe.framework.interceptor.LoginInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
@@ -77,6 +74,15 @@
 	<mvc:view-controller path="/registerData.html" view-name="resourse/jsp/datamanager/RegisterData"/>
 	
 	<mvc:view-controller path="/compareData.html" view-name="resourse/jsp/datamanager/TaxCompare"/>
+	
+	
+	<mvc:resources location="/WEB-INF/resourse/js/" mapping="/scripts/**" />
+	<mvc:resources location="/WEB-INF/resourse/css/" mapping="/css/**" />
+	<mvc:resources location="/WEB-INF/resourse/images/" mapping="/img/**" />
+	<mvc:resources location="/WEB-INF/resourse/swf/" mapping="/swf/**" />
+	<mvc:resources location="/WEB-INF/resourse/xml/" mapping="/xml/**" />
+	<mvc:resources location="/WEB-INF/resourse/json/" mapping="/json/**" />
+	
 
 </beans>
 	

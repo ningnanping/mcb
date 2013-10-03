@@ -36,11 +36,16 @@ public class LoginInterceptor implements HandlerInterceptor  {
 		String platFrom=CookieUtil.getInstance().getCookieValueByName(request, "platFrom");
 		String userName=CookieUtil.getInstance().getCookieValueByName(request, "userName");
 		String uuid=CookieUtil.getInstance().getCookieValueByName(request, "uuid");
-		
-		String acessTokenfrom =userLoginCache.getAcessToken(userName, platFrom, uuid);
+		//在缓存中获取acessToken并进行比较
+		String acessTokenfrom=null;
+		if(userName==null||platFrom==null||uuid==null){
+			request.getRequestDispatcher("/login.html").forward(request, response);  
+			return false;  
+		}
+		acessTokenfrom =userLoginCache.getAcessToken(userName, platFrom, uuid);
 		
 		if(StringUtils.isBlank(acessToken)||!acessToken.equals(acessTokenfrom)){
-			request.getRequestDispatcher("/index.html").forward(request, response);  
+			request.getRequestDispatcher("/login.html").forward(request, response);  
 			return false;   
 		}
 		return true;

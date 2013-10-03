@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>昌吉市综合治税信息管理系统</title>
 <link rel="stylesheet" type="text/css" href="./css/login.css">
-<c:import url="base.jsp"/> 
+<c:import url="/base.jsp"/> 
 <script>
 $(function(){
 	// 按键事件
