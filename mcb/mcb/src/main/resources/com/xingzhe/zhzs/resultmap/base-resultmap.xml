@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!-- oracle 分页工具  mysql 直接使用limit -->
-<mapper namespace="com.xingzhe.framework.mapper.SqlMapper">
-	<sql id="pageStart"><![CDATA[select * from (select b.*,rownum rn from (]]></sql>
-	<sql id="pageEnd"><![CDATA[) b)where rn >=#{start} and rn <= #{end}]]></sql>
-	<sql id="totalCountStart"><![CDATA[with tmp_a as (]]></sql>
-	<sql id="totalCountEnd"><![CDATA[) select count(*) as temp_count from tmp_a]]></sql>
-</mapper>
