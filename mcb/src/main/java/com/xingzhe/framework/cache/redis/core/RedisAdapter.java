@@ -25,8 +25,8 @@ import redis.clients.jedis.ShardedJedis;
 import redis.clients.jedis.ShardedJedisPipeline;
 import redis.clients.jedis.Transaction;
 
+import com.xingzhe.framework.cache.redis.RedisCache;
 import com.xingzhe.framework.util.HessianUtil;
-import com.xinzhe.framework.cache.redis.RedisCache;
 
 /**
  * 类RedisAdapter.java的实现描述：Redis client实现

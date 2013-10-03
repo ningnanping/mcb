@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd 
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd ">
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" lazy-init="false">
+		<property name="dataSource" >
+			<ref local="dataSource"/>
+		</property>
+		<property name="configLocation" value="classpath:SqlMapConfig.xml"></property>
+
+		<!-- mapper和resultmap配置路径 -->
+		<property name="mapperLocations">
+			<list>
+				<!--表示在com.xingzhe.*.resultmap包或以下所有目录中，以-resultmap.xml结尾所有文件 -->
+				<value>classpath:com/xingzhe/*/resultmap/*-resultmap.xml</value>
+			</list>
+		</property>
+		
+	</bean>
+
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.xingzhe.**.mapper" />
+		<property name="markerInterface" value="com.xingzhe.framework.mapper.SqlMapper" />
+	</bean>
+</beans>
+

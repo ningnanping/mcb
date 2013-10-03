@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cctc.framework.test.BaseTestCase;
-import com.xinzhe.framework.cache.redis.RedisCache;
+import com.xingzhe.framework.cache.redis.RedisCache;
 
 public class RedisTest extends BaseTestCase{
 	

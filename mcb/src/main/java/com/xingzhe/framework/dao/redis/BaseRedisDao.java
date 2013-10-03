@@ -2,7 +2,7 @@ package com.xingzhe.framework.dao.redis;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.xinzhe.framework.cache.redis.RedisCache;
+import com.xingzhe.framework.cache.redis.RedisCache;
 
 /**
  * Redis 基类

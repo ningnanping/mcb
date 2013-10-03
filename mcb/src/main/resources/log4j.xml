@@ -67,7 +67,7 @@
 	</logger>
 	
 	<logger name="org.springframework.test">
-		<level value="debug"></level>
+		<level value="info"></level>
 	</logger>
 		
 	<!-- Root Logger -->

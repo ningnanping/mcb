@@ -19,9 +19,4 @@
 	<!-- <mapper resource="com/xingzhe/zhzs/resultmap/zsTask-resultmap.xml" 
 		/> -->
 	<!-- </mappers> -->
-	<plugins>
-		<plugin interceptor="com.google.code.shardbatis.plugin.ShardPlugin">
-			<property name="shardingConfig" value="shard_config.xml" />
-		</plugin>
-	</plugins>
 </configuration>
