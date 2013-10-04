@@ -18,6 +18,11 @@ import com.xingzhe.framework.util.CookieUtil;
 import com.xingzhe.framework.util.MD5Util;
 import com.xingzhe.framework.util.UuidUtil;
 
+/**
+ * 登录退出模块
+ * @author LuTang
+ *
+ */
 @Controller
 @RequestMapping(value = "/common")
 public class LoginController

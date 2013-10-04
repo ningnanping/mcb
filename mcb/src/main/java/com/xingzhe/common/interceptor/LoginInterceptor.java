@@ -29,8 +29,6 @@ public class LoginInterceptor implements HandlerInterceptor  {
 	@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
-		log.debug(request.getRequestURL().toString());  
-		log.debug("==============执行顺序: 1、preHandle================");  
 		
 		//在Cookie获取值
 		String acessToken=CookieUtil.getInstance().getCookieValueByName(request, "acessToken");
@@ -56,7 +54,6 @@ public class LoginInterceptor implements HandlerInterceptor  {
 	public void postHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		log.debug("==============执行顺序: 2、postHandle================");  
 		
 	}
 
@@ -64,7 +61,6 @@ public class LoginInterceptor implements HandlerInterceptor  {
 	public void afterCompletion(HttpServletRequest request,
 			HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
-		log.debug("==============执行顺序: 3、afterCompletion================");  
 	}
 
 }
