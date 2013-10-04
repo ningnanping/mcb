@@ -4,8 +4,8 @@ import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.cctc.framework.test.BaseTestCase;
 import com.xingzhe.framework.cache.redis.RedisCache;
+import com.xingzhe.framework.test.BaseTestCase;
 
 public class RedisTest extends BaseTestCase{
 	

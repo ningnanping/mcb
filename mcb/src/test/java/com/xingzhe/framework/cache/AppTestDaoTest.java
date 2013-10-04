@@ -3,7 +3,7 @@ package com.xingzhe.framework.cache;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.cctc.framework.test.BaseTestCase;
+import com.xingzhe.framework.test.BaseTestCase;
 import com.xingzhe.zhzs.task.dao.AppTestDao;
 import com.xingzhe.zhzs.task.domain.AppTest;
 

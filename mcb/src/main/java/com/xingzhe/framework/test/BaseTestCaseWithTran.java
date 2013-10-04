@@ -1,4 +1,4 @@
-package com.cctc.framework.test;
+package com.xingzhe.framework.test;
 
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
