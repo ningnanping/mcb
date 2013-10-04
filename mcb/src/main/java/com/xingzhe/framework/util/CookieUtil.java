@@ -102,4 +102,14 @@ public enum CookieUtil {
 			String value) {
 		addCookie(response,name,value,0);
 	}
+	
+	
+	/**
+	 * 删除Cookie
+	 */
+	public void delCookie(HttpServletResponse response, String name){
+		Cookie cookie = new Cookie(name, null); 
+		cookie.setMaxAge(0);
+		response.addCookie(cookie); 
+	}
 }

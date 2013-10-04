@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>昌吉市综合治税信息管理系统</title>
+<title>妈妈带宝宝管理系统</title>
 <%@ include file="/base.jsp"%>
 <link rel="stylesheet" type="text/css" href="<%=path%>/css/login.css">
 <script>
@@ -70,17 +70,17 @@ $(function(){
 <body>
 <div class="login">
 	<div class="inputSec">
-		<form id="loginform" action="<%=request.getContextPath()%>/login" method="post">
+		<form id="loginform" action="<%=request.getContextPath()%>/common/login.html" method="post">
             <table>
                 <tr>
                     <td width="60">用户名:</td>
-                    <td><input class="easyui-validatebox" type="text" name="usr" 
+                    <td><input class="easyui-validatebox" type="text" name="userName" 
                     		data-options="required:true,missingMessage:'请输入您的用户名'"></input>
                     </td>
                 </tr>
                 <tr>
                     <td width="60">密&nbsp;&nbsp;码:</td>
-                    <td><input class="easyui-validatebox" type="text" name="password" 
+                    <td><input class="easyui-validatebox" type="password" name="password" 
                     		data-options="required:true,missingMessage:'请输入您的密码'"></input>
                     </td>
                 </tr>
@@ -90,9 +90,9 @@ $(function(){
 	<div class="buttonSec">
             <img src="<%=path%>/img/ok.gif" id="ok" border="0" style="cursor: pointer;padding-left: 10px;">
             <img src="<%=path%>/img/cancel.gif" id="cancel" border="0" style="cursor: pointer;padding-left: 10px;">
-            <img src="<%=path%>/img/xgmm.gif" id="modifypwd" border="0" style="cursor: pointer;padding-left: 10px;">
+<%--             <img src="<%=path%>/img/xgmm.gif" id="modifypwd" border="0" style="cursor: pointer;padding-left: 10px;"> --%>
     </div>
-	<div class="co">
+	<div class="co" style="display:none;">
 			<table border="0" align="center" cellpadding="0" cellspacing="0">
   				<tr>
     				<td width="200" align="right">
@@ -113,7 +113,7 @@ $(function(){
   				</tr>
   				<tr height='30'><td></td><td></td></tr>
   				<tr>
-    				<td colspan=2 align="center" valign="middle">
+    				<td colspan=2 align="center" valign="middle" style="display:none;">
     					<span class="style3">技术支持：</span>
     					<span class="style3">扬州紫竹软件有限公司</span>
     				</td>

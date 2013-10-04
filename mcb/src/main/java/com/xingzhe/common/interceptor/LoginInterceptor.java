@@ -1,4 +1,4 @@
-package com.xingzhe.framework.interceptor;
+package com.xingzhe.common.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -40,13 +40,13 @@ public class LoginInterceptor implements HandlerInterceptor  {
 		//在缓存中获取acessToken并进行比较
 		String acessTokenfrom=null;
 		if(userName==null||platFrom==null||uuid==null){
-			request.getRequestDispatcher("/login.html").forward(request, response);  
+			request.getRequestDispatcher("/index.html").forward(request, response);  
 			return false;  
 		}
 		acessTokenfrom =userLoginCache.getAcessToken(userName, platFrom, uuid);
 		
 		if(StringUtils.isBlank(acessToken)||!acessToken.equals(acessTokenfrom)){
-			request.getRequestDispatcher("/login.html").forward(request, response);  
+			request.getRequestDispatcher("/index.html").forward(request, response);  
 			return false;   
 		}
 		return true;

@@ -9,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="<%=path%>/css/zhzs.css">
 </head>
 <body>
-	欢迎页面
+	<script>window.location.href='<%=path%>/index.html';</script>
 </body>
 
 </html>
