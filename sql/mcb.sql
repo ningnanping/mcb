@@ -38,9 +38,9 @@ CREATE TABLE `customer` (
   KEY `FK_customer_lever` (`customer_level_id`),
   KEY `FK_customer_user_id` (`user_id`),
   KEY `FK_customer_agent` (`agent_id`),
-  KEY `FK_customer_handle` (`hand_id`),
-  CONSTRAINT `FK_customer_agent` FOREIGN KEY (`agent_id`) REFERENCES `user` (`id`),
-  CONSTRAINT `FK_customer_handle` FOREIGN KEY (`hand_id`) REFERENCES `user` (`id`),
+  KEY `FK_customer_hand` (`hand_id`),
+  CONSTRAINT `FK_customer_hand` FOREIGN KEY (`hand_id`) REFERENCES `employee` (`id`),
+  CONSTRAINT `FK_customer_agent` FOREIGN KEY (`agent_id`) REFERENCES `employee` (`id`),
   CONSTRAINT `FK_customer_lever` FOREIGN KEY (`customer_level_id`) REFERENCES `customer_level` (`id`),
   CONSTRAINT `FK_customer_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='客户表';
@@ -105,7 +105,7 @@ CREATE TABLE `exchange` (
   `customer_id` int(11) NOT NULL COMMENT '客户Id',
   `product_id` int(11) NOT NULL COMMENT '商品ID',
   `cost_score` int(11) NOT NULL COMMENT '话费积分数',
-  `action_tiem` date NOT NULL COMMENT '兑换时间',
+  `action_time` date NOT NULL COMMENT '兑换时间',
   PRIMARY KEY (`id`),
   KEY `FK_exchange_customer` (`customer_id`),
   KEY `FK_exchange_product` (`product_id`),
@@ -115,6 +115,35 @@ CREATE TABLE `exchange` (
 
 /*Data for the table `exchange` */
 
+/*Table structure for table `new_plan_list` */
+
+DROP TABLE IF EXISTS `new_plan_list`;
+
+CREATE TABLE `new_plan_list` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `customer_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `agent_id` int(11) NOT NULL COMMENT '代理人',
+  `hand_id` int(11) NOT NULL COMMENT '经手人',
+  `count` smallint(6) NOT NULL COMMENT '数量',
+  `sum` decimal(10,0) NOT NULL COMMENT '金额',
+  `new_plan_type_id` int(11) NOT NULL,
+  `time` date NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_new_plan_list_agent` (`agent_id`),
+  KEY `FK_new_plan_list_hand` (`hand_id`),
+  KEY `FK_new_plan_list_customer` (`customer_id`),
+  KEY `FK_new_plan_list_product` (`product_id`),
+  KEY `FK_new_plan_list_new_plan_type` (`new_plan_type_id`),
+  CONSTRAINT `FK_new_plan_list_new_plan_type` FOREIGN KEY (`new_plan_type_id`) REFERENCES `new_plan_type` (`id`),
+  CONSTRAINT `FK_new_plan_list_agent` FOREIGN KEY (`agent_id`) REFERENCES `employee` (`id`),
+  CONSTRAINT `FK_new_plan_list_customer` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
+  CONSTRAINT `FK_new_plan_list_hand` FOREIGN KEY (`hand_id`) REFERENCES `employee` (`id`),
+  CONSTRAINT `FK_new_plan_list_product` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='新课计划';
+
+/*Data for the table `new_plan_list` */
+
 /*Table structure for table `new_plan_type` */
 
 DROP TABLE IF EXISTS `new_plan_type`;
@@ -122,7 +151,7 @@ DROP TABLE IF EXISTS `new_plan_type`;
 CREATE TABLE `new_plan_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `prodect_id` int(11) NOT NULL COMMENT '商品ID',
-  `cut` double NOT NULL COMMENT '元/个',
+  `cut` decimal(10,0) NOT NULL COMMENT '元/个',
   `not_lost_count` smallint(6) NOT NULL COMMENT '不间断次数',
   `start_time` date NOT NULL,
   `end_time` date NOT NULL,
@@ -133,6 +162,36 @@ CREATE TABLE `new_plan_type` (
 
 /*Data for the table `new_plan_type` */
 
+/*Table structure for table `performance` */
+
+DROP TABLE IF EXISTS `performance`;
+
+CREATE TABLE `performance` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `employee_id` int(11) NOT NULL,
+  `create_time` int(11) NOT NULL,
+  `sum_money` decimal(10,0) NOT NULL DEFAULT '0' COMMENT '金额总提成',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='绩效';
+
+/*Data for the table `performance` */
+
+/*Table structure for table `performance_list` */
+
+DROP TABLE IF EXISTS `performance_list`;
+
+CREATE TABLE `performance_list` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `performance_id` int(11) NOT NULL,
+  `performance_type` int(11) NOT NULL,
+  `monery` decimal(10,0) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_performance_listperformance` (`performance_id`),
+  CONSTRAINT `FK_performance_listperformance` FOREIGN KEY (`performance_id`) REFERENCES `performance` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='绩效提成详细';
+
+/*Data for the table `performance_list` */
+
 /*Table structure for table `product` */
 
 DROP TABLE IF EXISTS `product`;
@@ -140,8 +199,8 @@ DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL COMMENT '商品名称',
-  `price` double NOT NULL COMMENT '价格',
-  `vip_price` double DEFAULT NULL COMMENT '会员价',
+  `price` decimal(10,0) NOT NULL COMMENT '价格',
+  `vip_price` decimal(10,0) DEFAULT NULL COMMENT '会员价',
   `uuid` varchar(50) DEFAULT NULL COMMENT '一般是商品的条形码',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='商品表';
@@ -155,7 +214,7 @@ DROP TABLE IF EXISTS `product_cut`;
 CREATE TABLE `product_cut` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL COMMENT '商品id',
-  `cut` double NOT NULL COMMENT '商品提成金额',
+  `cut` decimal(10,0) NOT NULL COMMENT '商品提成金额',
   `start_time` date NOT NULL COMMENT '开始时间',
   `end_time` date NOT NULL COMMENT '结束时间',
   PRIMARY KEY (`id`),
@@ -172,7 +231,7 @@ DROP TABLE IF EXISTS `scoure_reward`;
 CREATE TABLE `scoure_reward` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL COMMENT '商品数目',
-  `extends_cost` double NOT NULL COMMENT '额外花费',
+  `extends_cost` decimal(10,0) NOT NULL COMMENT '额外花费',
   `count` smallint(6) NOT NULL COMMENT '兑换商品数目',
   `soure` int(11) NOT NULL COMMENT '需要兑换积分数目',
   `start_time` date NOT NULL COMMENT '开始时间',
