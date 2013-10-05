@@ -106,6 +106,7 @@ CREATE TABLE `exchange` (
   `product_id` int(11) NOT NULL COMMENT '商品ID',
   `cost_score` int(11) NOT NULL COMMENT '话费积分数',
   `action_time` date NOT NULL COMMENT '兑换时间',
+  `product_cut_id` int(11) NOT NULL COMMENT '兑换规则ID',
   PRIMARY KEY (`id`),
   KEY `FK_exchange_customer` (`customer_id`),
   KEY `FK_exchange_product` (`product_id`),
@@ -162,6 +163,35 @@ CREATE TABLE `new_plan_type` (
 
 /*Data for the table `new_plan_type` */
 
+/*Table structure for table `order` */
+
+DROP TABLE IF EXISTS `order`;
+
+CREATE TABLE `order` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `create_time` date NOT NULL COMMENT '创建时间',
+  `settlemen` smallint(6) NOT NULL COMMENT '结算方式 0现金 1积分兑换',
+  `total` decimal(10,0) NOT NULL COMMENT '订单总金额',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='订单记录';
+
+/*Data for the table `order` */
+
+/*Table structure for table `order_product` */
+
+DROP TABLE IF EXISTS `order_product`;
+
+CREATE TABLE `order_product` (
+  `order_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  PRIMARY KEY (`order_id`,`product_id`),
+  KEY `FK_order_product_product` (`product_id`),
+  CONSTRAINT `FK_order_product_product` FOREIGN KEY (`product_id`) REFERENCES `order` (`id`),
+  CONSTRAINT `FK_order_product_order` FOREIGN KEY (`order_id`) REFERENCES `product` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='订单商品关联表';
+
+/*Data for the table `order_product` */
+
 /*Table structure for table `performance` */
 
 DROP TABLE IF EXISTS `performance`;
@@ -200,9 +230,12 @@ CREATE TABLE `product` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL COMMENT '商品名称',
   `price` decimal(10,0) NOT NULL COMMENT '价格',
-  `vip_price` decimal(10,0) DEFAULT NULL COMMENT '会员价',
-  `uuid` varchar(50) DEFAULT NULL COMMENT '一般是商品的条形码',
-  PRIMARY KEY (`id`)
+  `vip_price` decimal(10,0) NOT NULL COMMENT '会员价',
+  `uuid` varchar(50) NOT NULL COMMENT '一般是商品的条形码',
+  `customer_level_id` smallint(6) NOT NULL COMMENT '客户等级',
+  PRIMARY KEY (`id`),
+  KEY `FK_product_customer_level` (`customer_level_id`),
+  CONSTRAINT `FK_product_customer_level` FOREIGN KEY (`customer_level_id`) REFERENCES `customer_level` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='商品表';
 
 /*Data for the table `product` */
@@ -224,11 +257,11 @@ CREATE TABLE `product_cut` (
 
 /*Data for the table `product_cut` */
 
-/*Table structure for table `scoure_reward` */
+/*Table structure for table `soure_reward` */
 
-DROP TABLE IF EXISTS `scoure_reward`;
+DROP TABLE IF EXISTS `soure_reward`;
 
-CREATE TABLE `scoure_reward` (
+CREATE TABLE `soure_reward` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL COMMENT '商品数目',
   `extends_cost` decimal(10,0) NOT NULL COMMENT '额外花费',
@@ -241,7 +274,7 @@ CREATE TABLE `scoure_reward` (
   CONSTRAINT `FK_scoure_reward_product` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='积分奖励';
 
-/*Data for the table `scoure_reward` */
+/*Data for the table `soure_reward` */
 
 /*Table structure for table `user` */
 
