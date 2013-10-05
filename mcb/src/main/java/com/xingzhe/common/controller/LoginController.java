@@ -96,13 +96,6 @@ public class LoginController
     }
     
     @ResponseBody
-    @RequestMapping(value = "/test.html")
-    public String login()
-    {
-        return "OK";
-    }
-    
-    @ResponseBody
     @RequestMapping(value = "/logout.html")
     public String logout(HttpServletResponse response, HttpServletRequest request)
     {
