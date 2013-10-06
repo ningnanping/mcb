@@ -1,4 +1,4 @@
-package com.xingzhe.framework.cache;
+package com.xingzhe.common.redis.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -22,7 +22,7 @@ public class UserLoginCache  {
 	 */
 	public  String  putAcessToken(String userName,String planFrom,String uuid){
 		String acessToken=MD5Util.getInstance().md5s((userName+planFrom+uuid).getBytes());
-		redisCache.putMap(userName+planFrom,uuid,acessToken);
+		redisCache.putMap(userName+"_"+planFrom,uuid,acessToken);
 		return acessToken;
 	}
 	
@@ -34,11 +34,11 @@ public class UserLoginCache  {
 	 * @return
 	 */
 	public  String  getAcessToken(String userName,String planFrom,String uuid){
-		return redisCache.getMap(userName+planFrom,uuid);
+		return redisCache.getMap(userName+"_"+planFrom,uuid);
 	}
 	
 	public void delAcessToken(String userName,String planFrom){
-		redisCache.remove(userName+planFrom);
+		redisCache.remove(userName+"_"+planFrom);
 	}
 	
 }

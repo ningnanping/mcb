@@ -6,27 +6,34 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xingzhe.common.domain.User;
+import com.xingzhe.common.redis.dao.UserLoginCache;
 import com.xingzhe.common.service.UserService;
-import com.xingzhe.framework.cache.UserLoginCache;
 import com.xingzhe.framework.util.CookieUtil;
 import com.xingzhe.framework.util.MD5Util;
 import com.xingzhe.framework.util.UuidUtil;
 
 /**
  * 登录退出模块
+ * 
  * @author LuTang
- *
+ * 
  */
 @Controller
-@RequestMapping(value = "/common")
+@RequestMapping(value = "/common",method=RequestMethod.POST)
 public class LoginController
 {
+    
+    private static final  Logger log = LoggerFactory.getLogger(LoginController.class);  
+
     @Autowired
     private UserLoginCache userLoginCache;
     
@@ -62,8 +69,10 @@ public class LoginController
         List<User> list = userService.getUserByName(userName);
         if (list != null && list.size() != 0)
         {
+            password=MD5Util.getInstance().md5s((userName + password).getBytes());
+            log.debug(password);
             // 对用户名和密码的验证 验证通过加入到cookie中
-            if (list.get(0).getPassword().equals(MD5Util.getInstance().md5s((userName + password).getBytes())))
+            if (list.get(0).getPassword().equals(password))
             {
                 CookieUtil.getInstance().addCookie(response, "userName", userName);
                 CookieUtil.getInstance().addCookie(response, "platFrom", plantFrom);
@@ -99,9 +108,40 @@ public class LoginController
     @RequestMapping(value = "/logout.html")
     public String logout(HttpServletResponse response, HttpServletRequest request)
     {
-        
-        String platFrom = CookieUtil.getInstance().getCookieValueByName(request, "platFrom");
         String userName = CookieUtil.getInstance().getCookieValueByName(request, "userName");
+        delToKenAndCooike(response, request, userName);
+        return "OK";
+    }
+    
+    @ResponseBody
+    @RequestMapping(value = "/update/password.html")
+    public String update(HttpServletResponse response, HttpServletRequest request)
+    {
+        
+        String userName = CookieUtil.getInstance().getCookieValueByName(request, "userName");
+        String password = request.getParameter("password");
+        if (StringUtils.isNotBlank(password))
+        {
+            password = MD5Util.getInstance().md5s((userName + password).getBytes());
+            boolean b = userService.updatePassword(password, userName);
+            if (b)
+            {
+                delToKenAndCooike(response, request, userName);
+                
+                return "OK";
+            }
+            else
+            {
+                return "ERROR";
+            }
+        }else{
+            return "ERROR";
+        }
+    }
+    
+    private void delToKenAndCooike(HttpServletResponse response, HttpServletRequest request, String userName)
+    {
+        String platFrom = CookieUtil.getInstance().getCookieValueByName(request, "platFrom");
         // 将Cookie的值删除
         CookieUtil.getInstance().delCookie(response, "acessToken");
         CookieUtil.getInstance().delCookie(response, "platFrom");
@@ -118,7 +158,5 @@ public class LoginController
             }
             userLoginCache.delAcessToken(userName, platFrom);
         }
-        
-        return "OK";
     }
 }

@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.type.JdbcType;
 
 import com.xingzhe.common.domain.User;
@@ -21,4 +22,8 @@ public interface UserMapper extends SqlMapper {
 	})
 	@Select("SELECT `id`, `user_name`, `password`, `is_sys` FROM `mcb`.`user` WHERE `is_del`= 0 AND  `user_name`=#{userName}")
 	public List<User> getUserByName(@Param(value = "userName") String userName);
+	
+	
+	@Update("update `mcb`.`user` set password=#{password} where `user_name`=#{userName}")
+	public void  updatePassword(@Param(value = "password") String password,@Param(value = "userName") String userName);
 }
