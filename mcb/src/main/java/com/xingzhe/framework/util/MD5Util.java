@@ -45,4 +45,5 @@ public enum MD5Util {
 			return -1;
 		}
 	}
+	
 }
