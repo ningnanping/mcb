@@ -182,11 +182,11 @@ CREATE TABLE `order` (
   PRIMARY KEY (`id`),
   KEY `FK_order_customer` (`customer_id`),
   CONSTRAINT `FK_order_customer` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COMMENT='订单记录';
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COMMENT='订单记录';
 
 /*Data for the table `order` */
 
-insert  into `order`(`id`,`create_time`,`settlemen`,`total`,`customer_id`) values (23,'2013-10-06',0,'687.5000',1),(24,'2013-10-06',0,'687.5000',1),(25,'2013-10-06',0,'687.5000',1);
+insert  into `order`(`id`,`create_time`,`settlemen`,`total`,`customer_id`) values (36,'2013-10-06',0,'1375.0000',1);
 
 /*Table structure for table `order_product` */
 
@@ -195,15 +195,16 @@ DROP TABLE IF EXISTS `order_product`;
 CREATE TABLE `order_product` (
   `order_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
+  `product_count` smallint(6) NOT NULL DEFAULT '1',
   PRIMARY KEY (`order_id`,`product_id`),
   KEY `FK_order_product_product` (`product_id`),
-  CONSTRAINT `FK_order_product_product` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`),
-  CONSTRAINT `FK_order_product_order` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`)
+  CONSTRAINT `FK_order_product_order` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`),
+  CONSTRAINT `FK_order_product_product` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='订单商品关联表';
 
 /*Data for the table `order_product` */
 
-insert  into `order_product`(`order_id`,`product_id`) values (23,1),(24,1),(25,1),(23,2),(24,2),(25,2);
+insert  into `order_product`(`order_id`,`product_id`,`product_count`) values (36,1,2),(36,2,2);
 
 /*Table structure for table `performance` */
 
@@ -299,7 +300,7 @@ CREATE TABLE `sequence` (
 
 /*Data for the table `sequence` */
 
-insert  into `sequence`(`name`,`current_value`,`increment`) values ('ORDER_SEQ',25,1),('TestSeq',11,1);
+insert  into `sequence`(`name`,`current_value`,`increment`) values ('ORDER_SEQ',36,1),('TestSeq',11,1);
 
 /*Table structure for table `soure_reward` */
 
@@ -423,7 +424,7 @@ DELIMITER $$
 
 /*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_order_add`( IN customer_id  INT ,IN product_list  VARCHAR(255) )
 BEGIN
-	
+	-- product_list '1#1;2#2;' ‘;’用于分割每个商品 # 用于分割商品Id和数量
 	 DECLARE oeder_id int DEFAULT -1;
 	 -- 定义客户等级ID
 	 DECLARE cld INT DEFAULT -1;
@@ -432,22 +433,37 @@ BEGIN
          -- 定义分割 订单商品变量 
           DECLARE cnt INT DEFAULT 0;
 	  DECLARE i INT DEFAULT 0;
-	  DECLARE total decimal(10,4);
+	  DECLARE total decimal(10,4) DEFAULT 0;
+	  DECLARE tabale_sub varchar(20) DEFAULT '';
+	  DECLARE sql_text text DEFAULT '';
+	  set @tabale_sub=concat('tmp_print_',customer_id);
 	  
-	 SELECT  nextval('ORDER_SEQ') AS id into @oeder_id  FROM DUAL;
-         select  customer_level_id into  @cld from customer where id=customer_id;
+	  -- select @tabale_sub;
+	  
+	  SELECT  nextval('ORDER_SEQ') AS id into @oeder_id  FROM DUAL;
+          select  customer_level_id into  @cld from customer where id=customer_id;
          
 	  SET cnt = func_get_split_string_total(product_list,';');
 	   DROP TABLE IF EXISTS tmp_print;
-	   CREATE TEMPORARY TABLE tmp_print (num INT NOT NULL);
+	   CREATE TEMPORARY TABLE tmp_print (num INT NOT NULL,count smallint not null);
 	   WHILE i < cnt
 	   DO
 	     SET i = i + 1;
-	     INSERT INTO tmp_print(num) VALUES (func_get_split_string(product_list,';',i));
+	     -- set @sql_text=CONCAT("INSERT INTO " ,@tabale_sub," (num,COUNT) VALUES (",func_get_split_string(func_get_split_string(product_list,';',i),",",func_get_split_string(func_get_split_string(product_list,';',i),'#',2),")");
+	     INSERT INTO tmp_print(num,COUNT) VALUES (func_get_split_string(func_get_split_string(product_list,';',i),'#',1),func_get_split_string(func_get_split_string(product_list,';',i),'#',2));
+	     -- PREPARE sl FROM @sql_text;
+             -- EXECUTE sl;
+             -- DEALLOCATE PREPARE sl;
 	   END WHILE;
 	   
 	   -- 获得总金额
-	  SELECT SUM(vip_price) into @total FROM mcb.product_price t,tmp_print t2 WHERE t.customer_level_id=@cld  and t.product_id=t2.num;
+	   
+	     -- SET @sql_text=CONCAT("SELECT SUM(vip_price*t2.count) INTO @total FROM mcb.product_price t,",@tabale_sub," t2 WHERE t.customer_level_id=@cld  AND t.product_id=t2.num");
+	     -- INSERT INTO tmp_print(num,COUNT) VALUES (func_get_split_string(func_get_split_string(product_list,';',i),'#',1),func_get_split_string(func_get_split_string(product_list,';',i),'#',2));
+	     -- PREPARE sl FROM @sql_text;
+             -- EXECUTE sl;
+             -- DEALLOCATE PREPARE sl;
+	   SELECT SUM(vip_price*t2.count) into @total FROM mcb.product_price t,tmp_print t2 WHERE t.customer_level_id=@cld  and t.product_id=t2.num;
 	  
 	  -- select num, order_id  from (select * from  tmp_print a ,(SELECT @oeder_id AS  order_id FROM DUAL ) b) c;
 	  
@@ -455,8 +471,9 @@ BEGIN
 	  INSERT INTO mcb.order (id,create_time,settlemen,total,customer_id) VALUES (@oeder_id,SYSDATE(),0, @total,customer_id);
 	  
 	  -- 将order 和 product 关联 
-	 INSERT INTO mcb.order_product (product_id,order_id) select num, order_id  from (select * from  tmp_print a ,(SELECT @oeder_id AS  order_id FROM DUAL ) b) c ;	  
-		
+	 INSERT INTO mcb.order_product (product_id,order_id,product_count) select num, order_id ,COUNT  from (select * from  tmp_print a ,(SELECT @oeder_id AS  order_id FROM DUAL ) b) c ;	  
+          
+          DROP TABLE IF EXISTS tmp_print;
     END */$$
 DELIMITER ;
 
