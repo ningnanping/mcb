@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xingzhe.mcb.mapper.OrderMapper">
+	<!-- 添加订单存储过程 -->
+	<select id="addOrder" statementType="CALLABLE">
+		<![CDATA[  
+    		{call pro_order_add (#{customerId,mode=IN,jdbcType=INTEGER},#{productList,mode=IN,jdbcType=VARCHAR})}  
+		]]>  
+	</select>
+</mapper>

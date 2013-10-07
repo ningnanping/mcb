@@ -2,6 +2,11 @@ package com.xingzhe.mcb.domain;
 
 import com.xingzhe.framework.domain.BaseObj;
 
+/**
+ * 商品列表
+ * @author LuTang
+ *
+ */
 public class Product extends BaseObj
 {
 
@@ -15,22 +20,11 @@ public class Product extends BaseObj
     private String name;
     
     /**
-     * 价格
-     */
-    private double price;
-    
-    /**
-     * 会员价
-     */
-    private double vipPrice;
-    
-    /**
      * 商品的条形码 唯一识别码
      */
     private String uuid;
     
-    private int customerLevelId;
-    
+      
     public int getId()
     {
         return id;
@@ -47,22 +41,7 @@ public class Product extends BaseObj
     {
         this.name = name;
     }
-    public double getPrice()
-    {
-        return price;
-    }
-    public void setPrice(double price)
-    {
-        this.price = price;
-    }
-    public double getVipPrice()
-    {
-        return vipPrice;
-    }
-    public void setVipPrice(double vipPrice)
-    {
-        this.vipPrice = vipPrice;
-    }
+    
     public String getUuid()
     {
         return uuid;
@@ -71,13 +50,5 @@ public class Product extends BaseObj
     {
         this.uuid = uuid;
     }
-    public int getCustomerLevelId()
-    {
-        return customerLevelId;
-    }
-    public void setCustomerLevelId(int customerLevelId)
-    {
-        this.customerLevelId = customerLevelId;
-    }
-    
+   
 }

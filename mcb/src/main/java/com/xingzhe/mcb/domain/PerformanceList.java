@@ -31,5 +31,47 @@ public class PerformanceList extends BaseObj
      * 提成金额
      */
     private double monery;
+
+    public int getId()
+    {
+        return id;
+    }
+
+    public void setId(int id)
+    {
+        this.id = id;
+    }
+
+    public int getPerformanceId()
+    {
+        return performanceId;
+    }
+
+    public void setPerformanceId(int performanceId)
+    {
+        this.performanceId = performanceId;
+    }
+
+    public int getPerformanceType()
+    {
+        return performanceType;
+    }
+
+    public void setPerformanceType(int performanceType)
+    {
+        this.performanceType = performanceType;
+    }
+
+    public double getMonery()
+    {
+        return monery;
+    }
+
+    public void setMonery(double monery)
+    {
+        this.monery = monery;
+    }
+    
+    
     
 }

@@ -44,5 +44,61 @@ public class SoureReward extends BaseObj
      */
     private Date startTime;
     private Date endTime;
+    public int getId()
+    {
+        return id;
+    }
+    public void setId(int id)
+    {
+        this.id = id;
+    }
+    public int getProductId()
+    {
+        return productId;
+    }
+    public void setProductId(int productId)
+    {
+        this.productId = productId;
+    }
+    public double getExtendsCost()
+    {
+        return extendsCost;
+    }
+    public void setExtendsCost(double extendsCost)
+    {
+        this.extendsCost = extendsCost;
+    }
+    public int getCount()
+    {
+        return count;
+    }
+    public void setCount(int count)
+    {
+        this.count = count;
+    }
+    public int getSoure()
+    {
+        return soure;
+    }
+    public void setSoure(int soure)
+    {
+        this.soure = soure;
+    }
+    public Date getStartTime()
+    {
+        return startTime;
+    }
+    public void setStartTime(Date startTime)
+    {
+        this.startTime = startTime;
+    }
+    public Date getEndTime()
+    {
+        return endTime;
+    }
+    public void setEndTime(Date endTime)
+    {
+        this.endTime = endTime;
+    }
     
 }
