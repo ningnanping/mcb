@@ -341,7 +341,6 @@ public class HessianUtil {
 
     /**
      * 验证有效性.
-     * 
      * @param objectFileDirectory 文件夹目录.
      * @return file 文件对象.
      */
@@ -353,17 +352,4 @@ public class HessianUtil {
         return objDirFile;
     }
 
-    public static void main(String[] args) throws IOException {
-        Map<String, Serializable> map = new HashMap<String, Serializable>();
-        map.put("a", "c");
-        map.put("b", "c");
-        map.put("c", "c");
-        map.put("d", "c");
-        map.put("d２２", "c");
-
-        byte[][] bytes = mapToByteArray(map);
-        for (int i = 0; i < bytes.length; i++) {
-            System.out.println(Arrays.toString(bytes[i]));
-        }
-    }
 }

@@ -20,8 +20,7 @@ import com.xingzhe.framework.util.CookieUtil;
  */
 public class LoginInterceptor implements HandlerInterceptor  {
 
-	private static final  Logger log = LoggerFactory.getLogger(LoginInterceptor.class);  
-	
+	private static final  Logger log = LoggerFactory.getLogger(LoginInterceptor.class);
 	@Autowired
 	private UserLoginCache  userLoginCache;
 	

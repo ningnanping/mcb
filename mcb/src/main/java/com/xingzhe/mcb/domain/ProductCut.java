@@ -6,14 +6,7 @@ import java.util.Date;
 import com.xingzhe.framework.domain.BaseObj;
 
 /**
- * @author LuTang
- *
- */
-/**
- * @author LuTang
- *
- */
-/**
+ * 商品提成
  * @author LuTang
  *
  */

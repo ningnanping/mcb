@@ -37,6 +37,11 @@ public class SoureReward extends BaseObj
      * 耗费积分
      */
     private int soure;
+
+    /**
+     * 用户等级
+     * */
+    private int customerLevelId;
     
     
     /**
@@ -100,5 +105,14 @@ public class SoureReward extends BaseObj
     {
         this.endTime = endTime;
     }
-    
+
+    public int getCustomerLevelId() {
+        return customerLevelId;
+    }
+
+    public void setCustomerLevelId(int customerLevelId) {
+        this.customerLevelId = customerLevelId;
+    }
+
+
 }
