@@ -1,6 +1,7 @@
 package com.xingzhe.common.dao;
 
 import com.xingzhe.common.domain.User;
+import com.xingzhe.common.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -10,7 +11,7 @@ import java.util.List;
 public class UserDao {
 
     @Autowired
-    private UserDao userMapper;
+    private UserMapper userMapper;
 
     /**
      * 根据用户名查询用户

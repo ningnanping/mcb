@@ -1,5 +1,6 @@
 package com.xingzhe.mcb.service;
 
+import com.xingzhe.mcb.dao.CustomerLevelDao;
 import com.xingzhe.mcb.domain.CustomerLevel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,10 +19,10 @@ import java.util.List;
 public class CustomerLevelServiceImpl implements CustomerLevelService {
 
     @Autowired
-    private CustomerLevelService customerLevelService;
+    private CustomerLevelDao customerLevelDao;
 
     @Override
     public List<CustomerLevel> getAllCustomerLevel() {
-        return customerLevelService.getAllCustomerLevel();
+        return customerLevelDao.getAllCustomerLevel();
     }
 }

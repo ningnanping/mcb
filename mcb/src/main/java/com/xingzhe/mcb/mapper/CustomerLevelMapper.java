@@ -1,5 +1,6 @@
 package com.xingzhe.mcb.mapper;
 
+import com.xingzhe.framework.mapper.SqlMapper;
 import com.xingzhe.mcb.domain.CustomerLevel;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
@@ -15,7 +16,7 @@ import java.util.List;
  * Time: 下午7:10
  * To change this template use File | Settings | File Templates.
  */
-public interface CustomerLevelMapper {
+public interface CustomerLevelMapper extends SqlMapper{
 
     @Results(value ={
             @Result(column = "id",property = "id",jdbcType = JdbcType.SMALLINT,javaType = Integer.class),
