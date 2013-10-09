@@ -1,6 +1,7 @@
 package com.xingzhe.mcb.service;
 
 import com.xingzhe.framework.test.BaseTestCase;
+import com.xingzhe.mcb.service.CustomerLevelService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,8 +15,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class CustomerLevelServiceTest extends BaseTestCase {
 
     @Autowired
-    public  CustomerLevelService customerLevelService;
+    public CustomerLevelService customerLevelService;
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void testGetAllCustomerLevel() throws Exception {
         System.out.println(customerLevelService.getAllCustomerLevel());

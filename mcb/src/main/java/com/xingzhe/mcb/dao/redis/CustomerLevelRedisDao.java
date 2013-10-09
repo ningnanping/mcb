@@ -23,10 +23,18 @@ public class CustomerLevelRedisDao {
     @Autowired
     private RedisCache redisCache;
 
+    /**
+     * 添加到缓存
+     * @param list
+     */
     public void saveAllCustomerLevel(List<CustomerLevel> list) {
         redisCache.putMap("COMMON", PREX_CUSTOMER_LEVEL, JSON.toJSONString(list));
     }
 
+    /**
+     * 从缓存中获取
+     * @return
+     */
     public List<CustomerLevel> getAllCustomerLevel() {
         return JSON.parseArray((String) redisCache.getMap("COMMON", PREX_CUSTOMER_LEVEL), CustomerLevel.class);
     }
