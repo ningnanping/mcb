@@ -2,16 +2,14 @@ package com.xingzhe.common.mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 
 import com.xingzhe.common.domain.User;
 import com.xingzhe.framework.mapper.SqlMapper;
+import org.mybatis.caches.ehcache.LoggingEhcache;
 
+@CacheNamespace(size = 1024,implementation = LoggingEhcache.class)
 public interface UserMapper extends SqlMapper {
 
 	@Results(value = { 

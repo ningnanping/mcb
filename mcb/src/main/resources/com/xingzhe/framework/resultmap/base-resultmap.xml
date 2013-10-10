@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- oracle 分页工具  mysql 直接使用limit -->
 <!-- 可以将公用的sql写在这里 -->
+
 <mapper namespace="com.xingzhe.framework.mapper.SqlMapper">
 	<sql id="pageStart"><![CDATA[select * from (select b.*,rownum rn from (]]></sql>
 	<sql id="pageEnd"><![CDATA[) b)where rn >=#{start} and rn <= #{end}]]></sql>

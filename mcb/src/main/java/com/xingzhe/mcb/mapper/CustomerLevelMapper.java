@@ -2,10 +2,12 @@ package com.xingzhe.mcb.mapper;
 
 import com.xingzhe.framework.mapper.SqlMapper;
 import com.xingzhe.mcb.domain.CustomerLevel;
+import org.apache.ibatis.annotations.CacheNamespace;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.type.JdbcType;
+import org.mybatis.caches.ehcache.LoggingEhcache;
 
 import java.util.List;
 
@@ -16,6 +18,7 @@ import java.util.List;
  * Time: 下午7:10
  * To change this template use File | Settings | File Templates.
  */
+@CacheNamespace(size = 1024,implementation = LoggingEhcache.class)
 public interface CustomerLevelMapper extends SqlMapper{
 
     @Results(value ={

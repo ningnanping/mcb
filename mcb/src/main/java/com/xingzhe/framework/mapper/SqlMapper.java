@@ -1,6 +1,7 @@
 package com.xingzhe.framework.mapper;
 
 import org.apache.ibatis.annotations.CacheNamespace;
+import org.mybatis.caches.ehcache.LoggingEhcache;
 
 /**
  * @Title ：
@@ -11,7 +12,7 @@ import org.apache.ibatis.annotations.CacheNamespace;
  * @version ： 1.0
  */
 
-@CacheNamespace(size = 1024)
+@CacheNamespace(size = 1024,implementation = LoggingEhcache.class)
 public interface SqlMapper {
 
 }

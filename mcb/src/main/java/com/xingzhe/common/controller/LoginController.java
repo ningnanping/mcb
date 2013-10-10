@@ -132,5 +132,6 @@ public class LoginController {
             }
             userLoginCache.delAcessToken(userName, platFrom);
         }
-    }
+	}
+
 }
