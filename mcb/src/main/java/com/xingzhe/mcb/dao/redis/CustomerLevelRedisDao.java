@@ -19,23 +19,25 @@ import java.util.List;
 @Repository
 public class CustomerLevelRedisDao {
 
-    private static final String PREX_CUSTOMER_LEVEL = "COM.XINGZHE.MCB.DOMAIN.CUSTOMERLEVEL";
-    @Autowired
-    private RedisCache redisCache;
+	private static final String PREX_CUSTOMER_LEVEL = "COM.XINGZHE.MCB.DOMAIN.CUSTOMERLEVEL";
+	@Autowired
+	private RedisCache redisCache;
 
-    /**
-     * 添加到缓存
-     * @param list
-     */
-    public void saveAllCustomerLevel(List<CustomerLevel> list) {
-        redisCache.putMap("COMMON", PREX_CUSTOMER_LEVEL, JSON.toJSONString(list));
-    }
+	/**
+	 * 添加到缓存
+	 *
+	 * @param list
+	 */
+	public void saveAllCustomerLevel(List<CustomerLevel> list) {
+		redisCache.putMap("COMMON", PREX_CUSTOMER_LEVEL, JSON.toJSONString(list));
+	}
 
-    /**
-     * 从缓存中获取
-     * @return
-     */
-    public List<CustomerLevel> getAllCustomerLevel() {
-        return JSON.parseArray((String) redisCache.getMap("COMMON", PREX_CUSTOMER_LEVEL), CustomerLevel.class);
-    }
+	/**
+	 * 从缓存中获取
+	 *
+	 * @return
+	 */
+	public List<CustomerLevel> getAllCustomerLevel() {
+		return JSON.parseArray((String) redisCache.getMap("COMMON", PREX_CUSTOMER_LEVEL), CustomerLevel.class);
+	}
 }
