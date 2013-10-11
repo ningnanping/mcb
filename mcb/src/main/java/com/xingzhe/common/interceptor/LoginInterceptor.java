@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.xingzhe.common.redis.dao.UserLoginCache;
+import com.xingzhe.common.dao.redis.UserLoginCache;
 import com.xingzhe.framework.util.CookieUtil;
 
 /**

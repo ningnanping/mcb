@@ -1,7 +1,7 @@
 package com.xingzhe.common.controller;
 
 import com.xingzhe.common.domain.User;
-import com.xingzhe.common.redis.dao.UserLoginCache;
+import com.xingzhe.common.dao.redis.UserLoginCache;
 import com.xingzhe.common.service.UserService;
 import com.xingzhe.framework.util.CookieUtil;
 import com.xingzhe.framework.util.MD5Util;

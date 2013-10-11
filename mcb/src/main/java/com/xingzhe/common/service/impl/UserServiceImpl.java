@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.xingzhe.common.dao.UserDao;
 import com.xingzhe.common.domain.User;
-import com.xingzhe.common.redis.dao.UserRedisDao;
+import com.xingzhe.common.dao.redis.UserRedisDao;
 import com.xingzhe.common.service.UserService;
 
 @Service("userService")
