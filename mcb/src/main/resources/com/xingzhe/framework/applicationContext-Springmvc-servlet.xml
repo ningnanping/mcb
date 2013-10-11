@@ -70,21 +70,12 @@
     </bean>
 
     <mvc:view-controller path="/index.html" view-name="resourse/jsp/common/login"/>
-
-    <mvc:view-controller path="/dataImport.html" view-name="resourse/jsp/datamanager/DataImport"/>
-
-    <mvc:view-controller path="/registerData.html" view-name="resourse/jsp/datamanager/RegisterData"/>
-
-    <mvc:view-controller path="/compareData.html" view-name="resourse/jsp/datamanager/TaxCompare"/>
+    <mvc:view-controller path="/order.html" view-name="resourse/jsp/mcb/order"/>
 
 
     <mvc:resources location="/WEB-INF/resourse/js/" mapping="/scripts/**"/>
     <mvc:resources location="/WEB-INF/resourse/css/" mapping="/css/**"/>
     <mvc:resources location="/WEB-INF/resourse/images/" mapping="/img/**"/>
-    <mvc:resources location="/WEB-INF/resourse/swf/" mapping="/swf/**"/>
-    <mvc:resources location="/WEB-INF/resourse/xml/" mapping="/xml/**"/>
-    <mvc:resources location="/WEB-INF/resourse/json/" mapping="/json/**"/>
-
 
 </beans>
 	

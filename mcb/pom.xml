@@ -29,7 +29,6 @@
             <name>JBoss repository</name>
             <url>http://127.0.0.1/nexus/content/groups/public</url>
         </repository>
-
         <repository>
             <id>offical</id>
             <name>Maven Official Repository</name>
@@ -89,11 +88,11 @@
     </repositories>
     <dependencies>
         <!-- spring mvc 对json的支持 -->
-        <!--<dependency>
+        <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-asl</artifactId>
             <version>1.9.13</version>
-        </dependency>-->
+        </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>

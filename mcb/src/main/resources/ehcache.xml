@@ -13,7 +13,7 @@ diskExpiryThreadIntervalSeconds：磁盘失效线程运行时间间隔，默认�
 diskSpoolBufferSizeMB：这个参数设置DiskStore（磁盘缓存）的缓存区大小。默认是30MB。每个Cache都应该有自己的一个缓冲区
 memoryStoreEvictionPolicy：当达到maxElementsInMemory限制时，Ehcache将会根据指定的策略去清理内存。默认策略是LRU（最近最少使用）。你可以设置为FIFO（先进先出）或是LFU（较少使用）
 -->
-    <defaultCache overflowToDisk="true" eternal="false" maxBytesLocalHeap="100M"/>
+    <defaultCache overflowToDisk="true" eternal="false" maxBytesLocalHeap="10M"/>
     <diskStore path="D:/cache"/>
     <!--
    <cache name="zzugxy" overflowToDisk="true" eternal="false"

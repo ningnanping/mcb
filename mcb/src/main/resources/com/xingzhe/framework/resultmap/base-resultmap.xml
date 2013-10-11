@@ -4,8 +4,13 @@
 <!-- 可以将公用的sql写在这里 -->
 
 <mapper namespace="com.xingzhe.framework.mapper.SqlMapper">
-	<sql id="pageStart"><![CDATA[select * from (select b.*,rownum rn from (]]></sql>
-	<sql id="pageEnd"><![CDATA[) b)where rn >=#{start} and rn <= #{end}]]></sql>
-	<sql id="totalCountStart"><![CDATA[with tmp_a as (]]></sql>
-	<sql id="totalCountEnd"><![CDATA[) select count(*) as temp_count from tmp_a]]></sql>
+	<sql id="oraclePageStart"><![CDATA[select * from (select b.*,rownum rn from (]]></sql>
+	<sql id="oraclePageEnd"><![CDATA[) b)where rn >=#{start} and rn <= #{end}]]></sql>
+	<sql id="oracleTotalCountStart"><![CDATA[with tmp_a as (]]></sql>
+	<sql id="oracleTtotalCountEnd"><![CDATA[) select count(*) as temp_count from tmp_a]]></sql>
+
+
+	<sql id="mysqlPage"><![CDATA[ LIMIT #{start}, #{end}]]></sql>
+    <sql id="mysqlTotalCountStart"><![CDATA[SELECT  COUNT(*)  FROM (]]></sql>
+    <sql id="mysqlTtotalCountEnd"><![CDATA[ ) a]]></sql>
 </mapper>
