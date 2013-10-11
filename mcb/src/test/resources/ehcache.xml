@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../bin/ehcache.xsd">
-    <!--
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../config/ehcache.xsd">   <!--
 name：Cache的唯一标识
 maxElementsInMemory：内存中最大缓存对象数
 maxElementsOnDisk：磁盘中最大缓存对象数，若是0表示无穷大
@@ -13,8 +12,8 @@ diskExpiryThreadIntervalSeconds：磁盘失效线程运行时间间隔，默认�
 diskSpoolBufferSizeMB：这个参数设置DiskStore（磁盘缓存）的缓存区大小。默认是30MB。每个Cache都应该有自己的一个缓冲区
 memoryStoreEvictionPolicy：当达到maxElementsInMemory限制时，Ehcache将会根据指定的策略去清理内存。默认策略是LRU（最近最少使用）。你可以设置为FIFO（先进先出）或是LFU（较少使用）
 -->
-    <defaultCache overflowToDisk="true" eternal="false" maxBytesLocalHeap="10M"/>
-    <diskStore path="D:/cache"/>
+    <defaultCache overflowToDisk="true" eternal="false" maxBytesLocalHeap="100M"/>
+    <diskStore path="java.io.tmpdir"/>
     <!--
    <cache name="zzugxy" overflowToDisk="true" eternal="false"
      timeToIdleSeconds="300" timeToLiveSeconds="600" maxElementsInMemory="1000"
