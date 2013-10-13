@@ -31,4 +31,5 @@ public class OrderServiceImpl implements OrderService {
 	public int selectOrderCount(Map<String, Object> map) {
 		return orderDao.selectOrderCount(map);
 	}
+
 }

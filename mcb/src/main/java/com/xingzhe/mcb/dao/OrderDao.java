@@ -31,4 +31,5 @@ public class OrderDao<T extends Order> extends BaseDao<T> {
 	public int selectOrderCount(Map<String, Object> map) {
 		return orderMapper.selectOrderCount(map);
 	}
+
 }
