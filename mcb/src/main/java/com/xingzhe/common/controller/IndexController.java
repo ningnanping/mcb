@@ -32,7 +32,7 @@ public class IndexController {
 		if(StringUtils.isBlank(acessToken)||!acessToken.equals(acessTokenfrom)){
 			return  "resourse/jsp/common/login";   
 		}
-		return "resourse/jsp/mcb/order";
+		return "resourse/jsp/common/main";
 	}
 
 }

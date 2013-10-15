@@ -41,7 +41,6 @@ public class LoginController {
      * @param request
      * @return
      */
-    @ResponseBody
     @RequestMapping(value = "/login.html" , method = RequestMethod.POST)
     public String login(HttpServletResponse response, HttpServletRequest request) {
         // 获取所需要的参数
@@ -77,12 +76,12 @@ public class LoginController {
                 CookieUtil.getInstance().addCookie(response, "uuid", uuid);
                 String acessToken = userLoginCache.putAcessToken(userName, plantFrom, uuid);
                 CookieUtil.getInstance().addCookie(response, "acessToken", acessToken);
-                return "OK";
+                return "resourse/jsp/common/main";
             } else {
-                return "ERROR";
+                return "resourse/jsp/common/login";
             }
         } else {
-            return "ERROR";
+            return "resourse/jsp/common/login";
         }
 
     }
