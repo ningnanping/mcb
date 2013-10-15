@@ -2,7 +2,7 @@
 SQLyog Ultimate v9.30 
 MySQL - 5.5.30 : Database - mcb
 *********************************************************************
-*/
+*/
 
 /*!40101 SET NAMES utf8 */;
 
@@ -15,6 +15,27 @@ MySQL - 5.5.30 : Database - mcb
 CREATE DATABASE /*!32312 IF NOT EXISTS*/`mcb` /*!40100 DEFAULT CHARACTER SET utf8 */;
 
 USE `mcb`;
+
+/*Table structure for table `cctct_trees` */
+
+DROP TABLE IF EXISTS `cctct_trees`;
+
+CREATE TABLE `cctct_trees` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `ICON_CLS` varchar(255) DEFAULT NULL,
+  `PARENT_ID` int(11) DEFAULT NULL,
+  `SORT_NUM` int(11) DEFAULT NULL,
+  `STATE` varchar(20) DEFAULT 'closed',
+  `TEXT` varchar(20) DEFAULT NULL,
+  `TREE_NAME` varchar(50) DEFAULT NULL,
+  `EXTEND` varchar(50) DEFAULT NULL,
+  `IS_DEL` int(11) DEFAULT '0',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+/*Data for the table `cctct_trees` */
+
+insert  into `cctct_trees`(`ID`,`ICON_CLS`,`PARENT_ID`,`SORT_NUM`,`STATE`,`TEXT`,`TREE_NAME`,`EXTEND`,`IS_DEL`) values (1,'icon-add',0,NULL,'','123','123456','132',0),(2,'icon-reload',1,1,'closed','456',NULL,'132',0),(3,'icon-edit',1,2,'closed','系统管理',NULL,'132',0),(4,'icon-remove',3,3,'','日志管理',NULL,'33342',0),(5,'icon-save',2,1,'','订单查看',NULL,'324',0),(6,'icon-cut',2,3,'','户口类型人数统计图',NULL,'24332',0),(7,'icon-ok',2,2,'','户口类型统人数比例图',NULL,'23423432',0),(8,'icon-ok',3,1,'','清除缓存',NULL,NULL,0),(9,'icon-ok',3,1,'','用户管理',NULL,NULL,0);
 
 /*Table structure for table `customer` */
 
