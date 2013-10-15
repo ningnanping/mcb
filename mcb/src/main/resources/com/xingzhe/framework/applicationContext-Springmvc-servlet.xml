@@ -68,9 +68,6 @@
         </property>
     </bean>
 
-    <mvc:view-controller path="/index.html" view-name="resourse/jsp/common/login"/>
-
-
     <mvc:resources location="/WEB-INF/resourse/js/" mapping="/scripts/**"/>
     <mvc:resources location="/WEB-INF/resourse/css/" mapping="/css/**"/>
     <mvc:resources location="/WEB-INF/resourse/images/" mapping="/img/**"/>

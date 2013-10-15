@@ -25,7 +25,7 @@ import java.util.List;
  * @author LuTang
  */
 @Controller
-@RequestMapping(value = "/common", method = RequestMethod.POST)
+@RequestMapping(value = "/common")
 public class LoginController {
 
     private static final Logger log = LoggerFactory.getLogger(LoginController.class);
@@ -42,7 +42,7 @@ public class LoginController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/login.html")
+    @RequestMapping(value = "/login.html" , method = RequestMethod.POST)
     public String login(HttpServletResponse response, HttpServletRequest request) {
         // 获取所需要的参数
         String userName = request.getParameter("userName");
