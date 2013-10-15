@@ -86,24 +86,24 @@
   border-bottom: 1px solid #fff;
 }
 .menu {
-  background-color: #fafafa;
-  border-color: #ddd;
-  color: #444;
+  background-color: #fff;
+  border-color: #e6e6e6;
+  color: #333;
 }
 .menu-content {
   background: #ffffff;
 }
 .menu-item {
   border-color: transparent;
-  _border-color: #fafafa;
+  _border-color: #fff;
 }
 .menu-active {
-  border-color: #b7d2ff;
-  color: #000000;
-  background: #eaf2ff;
+  border-color: #ddd;
+  color: #00438a;
+  background: #e6e6e6;
 }
 .menu-active-disabled {
   border-color: transparent;
   background: transparent;
-  color: #444;
+  color: #333;
 }

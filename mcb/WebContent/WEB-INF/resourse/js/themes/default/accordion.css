@@ -27,15 +27,15 @@
 }
 .accordion {
   background: #ffffff;
-  border-color: #95B8E7;
+  border-color: #D4D4D4;
 }
 .accordion .accordion-header {
-  background: #E0ECFF;
+  background: #F2F2F2;
   filter: none;
 }
 .accordion .accordion-header-selected {
-  background: #FBEC88;
+  background: #0081c2;
 }
 .accordion .accordion-header-selected .panel-title {
-  color: #000000;
+  color: #fff;
 }

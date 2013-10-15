@@ -20,11 +20,11 @@
 }
 .dialog-toolbar,
 .dialog-button {
-  background: #F4F4F4;
+  background: #F5F5F5;
 }
 .dialog-toolbar {
-  border-bottom: 1px solid #dddddd;
+  border-bottom: 1px solid #e6e6e6;
 }
 .dialog-button {
-  border-top: 1px solid #dddddd;
+  border-top: 1px solid #e6e6e6;
 }

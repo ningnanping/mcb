@@ -27,7 +27,7 @@ a.s-btn-plain-active {
 }
 .s-btn-downarrow {
   background: url('images/menu_arrows.png') no-repeat 2px center;
-  border-color: #aac5e7;
+  border-color: #bbb;
 }
 a:hover.l-btn .s-btn-downarrow,
 a.s-btn-active .s-btn-downarrow,
@@ -37,7 +37,7 @@ a.s-btn-plain-active .s-btn-downarrow {
   border-width: 0 0 0 1px;
 }
 a.s-btn-plain-active {
-  border-color: #b7d2ff;
-  background-color: #eaf2ff;
-  color: #000000;
+  border-color: #ddd;
+  background-color: #e6e6e6;
+  color: #00438a;
 }

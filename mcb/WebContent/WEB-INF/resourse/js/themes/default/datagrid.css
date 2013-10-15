@@ -96,6 +96,7 @@
   overflow: hidden;
   height: 18px;
   line-height: 18px;
+  font-weight: normal;
   font-size: 12px;
 }
 .datagrid-header .datagrid-cell {
@@ -200,35 +201,35 @@
 }
 .datagrid-header,
 .datagrid-td-rownumber {
-  background-color: #efefef;
-  background: -webkit-linear-gradient(top,#F9F9F9 0,#efefef 100%);
-  background: -moz-linear-gradient(top,#F9F9F9 0,#efefef 100%);
-  background: -o-linear-gradient(top,#F9F9F9 0,#efefef 100%);
-  background: linear-gradient(to bottom,#F9F9F9 0,#efefef 100%);
+  background-color: #F2F2F2;
+  background: -webkit-linear-gradient(top,#ffffff 0,#F2F2F2 100%);
+  background: -moz-linear-gradient(top,#ffffff 0,#F2F2F2 100%);
+  background: -o-linear-gradient(top,#ffffff 0,#F2F2F2 100%);
+  background: linear-gradient(to bottom,#ffffff 0,#F2F2F2 100%);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#F9F9F9,endColorstr=#efefef,GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff,endColorstr=#F2F2F2,GradientType=0);
 }
 .datagrid-cell-rownumber {
-  color: #000000;
+  color: #333;
 }
 .datagrid-resize-proxy {
-  background: #aac5e7;
+  background: #bbb;
 }
 .datagrid-mask {
   background: #ccc;
 }
 .datagrid-mask-msg {
-  border-color: #95B8E7;
+  border-color: #D4D4D4;
 }
 .datagrid-toolbar,
 .datagrid-pager {
-  background: #F4F4F4;
+  background: #F5F5F5;
 }
 .datagrid-header,
 .datagrid-toolbar,
 .datagrid-pager,
 .datagrid-footer-inner {
-  border-color: #dddddd;
+  border-color: #e6e6e6;
 }
 .datagrid-header td,
 .datagrid-body td,
@@ -238,21 +239,21 @@
 .datagrid-htable,
 .datagrid-btable,
 .datagrid-ftable {
-  color: #000000;
+  color: #333;
 }
 .datagrid-row-alt {
-  background: #fafafa;
+  background: #F5F5F5;
 }
 .datagrid-row-over,
 .datagrid-header td.datagrid-header-over {
-  background: #eaf2ff;
-  color: #000000;
+  background: #e6e6e6;
+  color: #00438a;
   cursor: default;
 }
 .datagrid-row-selected {
-  background: #FBEC88;
-  color: #000000;
+  background: #0081c2;
+  color: #fff;
 }
 .datagrid-body .datagrid-editable .datagrid-editable-input {
-  border-color: #95B8E7;
+  border-color: #D4D4D4;
 }

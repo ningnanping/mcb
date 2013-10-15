@@ -144,14 +144,14 @@
 }
 .tree-node-proxy {
   background-color: #ffffff;
-  color: #000000;
-  border-color: #95B8E7;
+  color: #333;
+  border-color: #D4D4D4;
 }
 .tree-node-hover {
-  background: #eaf2ff;
-  color: #000000;
+  background: #e6e6e6;
+  color: #00438a;
 }
 .tree-node-selected {
-  background: #FBEC88;
-  color: #000000;
+  background: #0081c2;
+  color: #fff;
 }
