@@ -22,47 +22,8 @@ a{TEXT-DECORATION:none}
 -->
 </style>
 <script type="text/javascript">
-// tabs
-$(function(){
-	$('#tt').tabs({
-		onLoad:function(panel){
-			var plugin = panel.panel('options').title;
-			panel.find('textarea[name="code-'+plugin+'"]').each(function(){
-				var data = $(this).val();
-				data = data.replace(/(\r\n|\r|\n)/g, '\n');
-				if (data.indexOf('\t') == 0){
-					data = data.replace(/^\t/, '');
-					data = data.replace(/\n\t/g, '\n');
-				}
-				data = data.replace(/\t/g, '    ');
-				var pre = $('<pre name="code" class="prettyprint linenums"></pre>').insertAfter(this);
-				pre.text(data);
-				$(this).remove();
-			});
-			prettyPrint();
-		}
-	});
-});
 
-// open
-function open1(plugin){
-	if ($('#tt').tabs('exists',plugin)){
-		$('#tt').tabs('select', plugin);
-	} else {
-		$('#tt').tabs('add',{
-			title:plugin,
-			href:plugin+'.php',
-			closable:true,
-			extractor:function(data){
-				data = $.fn.panel.defaults.extractor(data);
-				var tmp = $('<div></div>').html(data);
-				data = tmp.find('#content').html();
-				tmp.remove();
-				return data;
-			}
-		});
-	}
-}
+
 </script>
 <script type="text/JavaScript">
 <!--
@@ -135,7 +96,7 @@ function openrili(){
 														border="0" cellspacing="0" cellpadding="0">
 														<tr>
 															<td align="center" background="<%=path%>/img/top_bg1.gif"><span
-																class="STYLE2">lupengji</span></td>
+																class="STYLE2">欢迎 【${userName}】登录</span></td>
 															<td width="48"><img src="<%=path%>/img/jiao.gif" width="48"
 																height="26" /></td>
 														</tr>
@@ -151,11 +112,6 @@ function openrili(){
 															<td width="360" valign="top" background="<%=path%>/img/bg_5.gif"><table
 																	width="100%" border="0" cellspacing="0" cellpadding="0">
 																	<tr>
-																		<td><a href="javascript:openrili()" title='打开日历'
-																			onmouseout="MM_swapImgRestore()"
-																			onmouseover="MM_swapImage('Image9','','<%=path%>/img/index1_03.gif',1)"><img
-																				src="<%=path%>/img/index2_03.gif" name="Image9" width="72"
-																				height="72" border="0" id="Image9" /></a></td>
 																		<td><a
 																			href="javascript:openwin('\modifypassword.jsp');"
 																			title='设置' onmouseout="MM_swapImgRestore()"
@@ -197,9 +153,7 @@ function openrili(){
 	<!-- 菜单区域 -->
 	<div region="west" border="false" split="true" title="系统功能"
 		style="width: 250px; padding: 5px;">
-		<ul class="easyui-tree" id="tree">
-			
-		</ul>
+		<ul class="easyui-tree" id="tree"></ul>
 	</div>
 	
 	<!-- 内容区域 -->
@@ -222,13 +176,6 @@ $(function(){
 	    onlyLeafCheck:true,
 	    onBeforeExpand:function(node,param){
 	        $("#tree").tree("options").url = "<%=path%>/tree/123456/"+ node.id + "/child.json";
-	    },
-	    onExpand:function(node,param){
-	    	var roots = $('#tree').tree('getChildren');
-            for (var i = 0; i < roots.length; i++) {
-                if ( roots[i].attributes!=null||roots[i].attributes!="" ) {
-                	 $('#tree').tree('check', roots[i].target);
-                }}
 	    },
 		onDblClick : treeOnDbClick
 	});

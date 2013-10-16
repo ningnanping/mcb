@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.xingzhe.common.dao.redis.UserLoginCache;
 import com.xingzhe.framework.util.CookieUtil;
@@ -18,7 +19,7 @@ public class IndexController {
 	private UserLoginCache  userLoginCache;
 	
 	@RequestMapping("/index.html")
-	public String index(HttpServletRequest request, HttpServletResponse response) {
+	public Object index(HttpServletRequest request, HttpServletResponse response) {
 		String acessToken=CookieUtil.getInstance().getCookieValueByName(request, "acessToken");
 		String platFrom=CookieUtil.getInstance().getCookieValueByName(request, "platFrom");
 		String userName=CookieUtil.getInstance().getCookieValueByName(request, "userName");
@@ -32,7 +33,7 @@ public class IndexController {
 		if(StringUtils.isBlank(acessToken)||!acessToken.equals(acessTokenfrom)){
 			return  "resourse/jsp/common/login";   
 		}
-		return "resourse/jsp/common/main";
+		return new ModelAndView("resourse/jsp/common/main","userName",userName);
 	}
 
 }

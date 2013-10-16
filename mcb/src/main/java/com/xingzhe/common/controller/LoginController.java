@@ -6,6 +6,7 @@ import com.xingzhe.common.service.UserService;
 import com.xingzhe.framework.util.CookieUtil;
 import com.xingzhe.framework.util.MD5Util;
 import com.xingzhe.framework.util.UuidUtil;
+
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,9 +15,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import java.util.List;
 
 /**
@@ -42,7 +45,7 @@ public class LoginController {
      * @return
      */
     @RequestMapping(value = "/login.html" , method = RequestMethod.POST)
-    public String login(HttpServletResponse response, HttpServletRequest request) {
+    public Object login(HttpServletResponse response, HttpServletRequest request) {
         // 获取所需要的参数
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
@@ -76,7 +79,7 @@ public class LoginController {
                 CookieUtil.getInstance().addCookie(response, "uuid", uuid);
                 String acessToken = userLoginCache.putAcessToken(userName, plantFrom, uuid);
                 CookieUtil.getInstance().addCookie(response, "acessToken", acessToken);
-                return "resourse/jsp/common/main";
+                return new ModelAndView("resourse/jsp/common/main","userName",userName);
             } else {
                 return "resourse/jsp/common/login";
             }

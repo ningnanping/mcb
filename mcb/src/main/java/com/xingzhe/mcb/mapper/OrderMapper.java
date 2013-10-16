@@ -2,9 +2,7 @@ package com.xingzhe.mcb.mapper;
 
 import com.xingzhe.framework.mapper.SqlMapper;
 import com.xingzhe.mcb.domain.Order;
-import org.apache.ibatis.annotations.CacheNamespace;
 import org.apache.ibatis.annotations.Param;
-import org.mybatis.caches.ehcache.LoggingEhcache;
 
 import java.util.List;
 import java.util.Map;

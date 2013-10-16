@@ -1,8 +1,3 @@
-/*
- * Copyright 1998-2012 360buy.com All right reserved. This software is the confidential and proprietary information of
- * 360buy.com ("Confidential Information"). You shall not disclose such Confidential Information and shall use it only
- * in accordance with the terms of the license agreement you entered into with 360buy.com.
- */
 package com.xingzhe.framework.cache.redis;
 
 import java.io.Serializable;
@@ -18,7 +13,6 @@ import com.xingzhe.framework.cache.redis.core.RedisTransactionCallBack;
 /**
  * 类RedisCache.java的实现描述：Redis接口方法。
  * 
- * @author liulin 2012-11-29 下午7:12:16
  */
 public interface RedisCache extends BaseCache {
 
