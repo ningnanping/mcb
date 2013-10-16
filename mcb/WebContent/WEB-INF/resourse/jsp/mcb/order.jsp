@@ -17,7 +17,7 @@
     <thead>
     <tr>
         <th data-options="field:'id',align:'center',width:200,hidden:true"></th>
-        <th data-options="field:'createTime',align:'center',width:200">创建时间</th>
+        <th data-options="field:'createTimeText',align:'center',width:200">创建时间</th>
         <th data-options="field:'settlemen',align:'center',width:200">付款方式</th>
         <th data-options="field:'total',align:'center',width:200">总金额</th>
         <th data-options="field:'customerId',align:'center',width:200,hidden:true"></th>

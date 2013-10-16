@@ -8,7 +8,7 @@
 
     <resultMap id="getSelectOrderMap" type="com.xingzhe.mcb.domain.Order">
             <result column="oid" property="id" javaType="java.lang.Integer" jdbcType="INTEGER"></result>
-            <result column="ct" property="createTime" javaType="java.util.Date" jdbcType="DATE"></result>
+            <result column="ct" property="createTimeText" javaType="java.lang.String" jdbcType="VARCHAR"></result>
             <result column="settlemen" property="settlemen" javaType="java.lang.Integer" jdbcType="INTEGER"></result>
             <result column="total" property="total" javaType="java.lang.Double" jdbcType="DECIMAL"></result>
             <result column="customer_id" property="customerId" javaType="java.lang.Integer" jdbcType="INTEGER"></result>
@@ -25,12 +25,12 @@
     <sql id="sqlSelectOrder">
         <![CDATA[
           SELECT
-          o.id as oid,
-          o.create_time as ct,
-          o.settlemen as settlemen,
-          o.total as total,
-          o.customer_id as customer_id ,
-          c.name  as name
+          o.id AS oid,
+          DATE_FORMAT(o.create_time, '%Y-%m-%d %k:%i:%s') AS ct,
+          o.settlemen AS settlemen,
+          o.total AS total,
+          o.customer_id AS customer_id ,
+          c.name  AS NAME
           FROM mcb.order o, customer c WHERE  o.customer_id=c.id
         ]]>
     </sql>

@@ -27,6 +27,8 @@ public class Order extends BaseObj {
 	 * 客户姓名
 	 */
 	private String name;
+	
+	private String createTimeText;
 
 	public int getId() {
 		return id;
@@ -74,5 +76,13 @@ public class Order extends BaseObj {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getCreateTimeText() {
+		return createTimeText;
+	}
+
+	public void setCreateTimeText(String createTimeText) {
+		this.createTimeText = createTimeText;
 	}
 }
