@@ -2,7 +2,7 @@
 SQLyog Ultimate v9.30 
 MySQL - 5.5.30 : Database - mcb
 *********************************************************************
-*/
+*/
 
 /*!40101 SET NAMES utf8 */;
 
@@ -26,16 +26,16 @@ CREATE TABLE `cctct_trees` (
   `PARENT_ID` int(11) DEFAULT NULL,
   `SORT_NUM` int(11) DEFAULT NULL,
   `STATE` varchar(20) DEFAULT 'closed',
-  `TEXT` varchar(20) DEFAULT NULL,
+  `TEXT` varchar(50) DEFAULT NULL,
   `TREE_NAME` varchar(50) DEFAULT NULL,
-  `EXTEND` varchar(50) DEFAULT NULL,
+  `EXTEND` text,
   `IS_DEL` int(11) DEFAULT '0',
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 /*Data for the table `cctct_trees` */
 
-insert  into `cctct_trees`(`ID`,`ICON_CLS`,`PARENT_ID`,`SORT_NUM`,`STATE`,`TEXT`,`TREE_NAME`,`EXTEND`,`IS_DEL`) values (1,'icon-add',0,NULL,'','123','123456','132',0),(2,'icon-reload',1,1,'closed','456',NULL,'132',0),(3,'icon-edit',1,2,'closed','系统管理',NULL,'132',0),(4,'icon-remove',3,3,'','日志管理',NULL,'33342',0),(5,'icon-save',2,1,'','订单查看',NULL,'324',0),(6,'icon-cut',2,3,'','户口类型人数统计图',NULL,'24332',0),(7,'icon-ok',2,2,'','户口类型统人数比例图',NULL,'23423432',0),(8,'icon-ok',3,1,'','清除缓存',NULL,NULL,0),(9,'icon-ok',3,1,'','用户管理',NULL,NULL,0);
+insert  into `cctct_trees`(`ID`,`ICON_CLS`,`PARENT_ID`,`SORT_NUM`,`STATE`,`TEXT`,`TREE_NAME`,`EXTEND`,`IS_DEL`) values (1,'icon-add',0,NULL,'','123','123456','132',0),(2,'icon-reload',1,1,'closed','456',NULL,'132',0),(3,'icon-edit',1,2,'closed','系统管理',NULL,'132',0),(4,'icon-remove',3,3,'','日志管理',NULL,'33342',0),(5,'icon-save',2,1,'','订单查看',NULL,'{\"type\":\"tabs\",\"url\":\"/order/index.html\"}',0),(6,'icon-cut',2,3,'','户口类型人数统计图',NULL,'24332',0),(7,'icon-ok',2,2,'','户口类型统人数比例图',NULL,'23423432',0),(8,'icon-ok',3,1,'','清除缓存',NULL,NULL,0),(9,'icon-ok',3,1,'','用户管理',NULL,NULL,0);
 
 /*Table structure for table `customer` */
 
@@ -265,12 +265,13 @@ CREATE TABLE `product` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL COMMENT '商品名称',
   `uuid` varchar(50) NOT NULL COMMENT '一般是商品的条形码',
+  `price` decimal(10,4) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='商品表';
 
 /*Data for the table `product` */
 
-insert  into `product`(`id`,`name`,`uuid`) values (1,'奶粉1','1234567'),(2,'奶粉2','1234566');
+insert  into `product`(`id`,`name`,`uuid`,`price`) values (1,'奶粉1','1234567','289.0000'),(2,'奶粉2','1234566','299.0000');
 
 /*Table structure for table `product_cut` */
 
@@ -296,7 +297,6 @@ DROP TABLE IF EXISTS `product_price`;
 CREATE TABLE `product_price` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
-  `price` decimal(10,4) NOT NULL,
   `vip_price` decimal(10,4) NOT NULL,
   `customer_level_id` smallint(11) NOT NULL,
   PRIMARY KEY (`id`),
@@ -306,7 +306,7 @@ CREATE TABLE `product_price` (
 
 /*Data for the table `product_price` */
 
-insert  into `product_price`(`id`,`product_id`,`price`,`vip_price`,`customer_level_id`) values (16,1,'289.0000','288.5000',1),(17,1,'289.0000','286.5000',2),(18,1,'289.0000','284.5000',3),(19,1,'289.0000','282.5000',4),(20,1,'289.0000','280.5000',5),(21,1,'289.0000','289.0000',0),(22,2,'399.0000','399.0000',0),(23,2,'399.0000','399.0000',1),(24,2,'399.0000','399.0000',2),(25,2,'399.0000','399.0000',3),(26,2,'399.0000','380.5000',4),(27,2,'399.0000','370.5000',5);
+insert  into `product_price`(`id`,`product_id`,`vip_price`,`customer_level_id`) values (16,1,'288.5000',1),(17,1,'286.5000',2),(18,1,'284.5000',3),(19,1,'282.5000',4),(20,1,'280.5000',5),(21,1,'289.0000',0),(22,2,'399.0000',0),(23,2,'399.0000',1),(24,2,'399.0000',2),(25,2,'399.0000',3),(26,2,'380.5000',4),(27,2,'370.5000',5);
 
 /*Table structure for table `sequence` */
 
