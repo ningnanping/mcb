@@ -1,11 +1,9 @@
 package com.xingzhe.common.controller;
 
-import com.xingzhe.common.domain.User;
-import com.xingzhe.common.dao.redis.UserLoginCache;
-import com.xingzhe.common.service.UserService;
-import com.xingzhe.framework.util.CookieUtil;
-import com.xingzhe.framework.util.MD5Util;
-import com.xingzhe.framework.util.UuidUtil;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -16,11 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import java.util.List;
+import com.xingzhe.common.dao.redis.UserLoginCache;
+import com.xingzhe.common.domain.User;
+import com.xingzhe.common.service.UserService;
+import com.xingzhe.framework.util.CookieUtil;
+import com.xingzhe.framework.util.MD5Util;
+import com.xingzhe.framework.util.UuidUtil;
 
 /**
  * 登录退出模块
@@ -45,7 +47,7 @@ public class LoginController {
      * @return
      */
     @RequestMapping(value = "/login.html" , method = RequestMethod.POST)
-    public Object login(HttpServletResponse response, HttpServletRequest request) {
+    public Object login(HttpServletResponse response, HttpServletRequest request,RedirectAttributes attr) {
         // 获取所需要的参数
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
@@ -79,7 +81,9 @@ public class LoginController {
                 CookieUtil.getInstance().addCookie(response, "uuid", uuid);
                 String acessToken = userLoginCache.putAcessToken(userName, plantFrom, uuid);
                 CookieUtil.getInstance().addCookie(response, "acessToken", acessToken);
-                return new ModelAndView("resourse/jsp/common/main","userName",userName);
+                //重定向  详情 http://blog.sina.com.cn/s/blog_9cd9dc7101016abw.html
+                attr.addFlashAttribute("userName", userName);
+                return new ModelAndView(new RedirectView("../index.html"));
             } else {
                 return "resourse/jsp/common/login";
             }

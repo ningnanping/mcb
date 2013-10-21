@@ -26,6 +26,9 @@ public class UserLoginCache {
 	public String putAcessToken(String userName, String planFrom, String uuid) {
 		String acessToken = MD5Util.getInstance().md5s((userName + planFrom + uuid).getBytes());
 		try {
+			//将所有的token删除
+			redisCache.remove(userName + "_" + planFrom);
+			//将token加入缓存
 			redisCache.putMap(userName + "_" + planFrom, uuid, acessToken);
 		} catch (Exception e) {
 			log.error(e.getMessage());

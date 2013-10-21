@@ -183,9 +183,14 @@ $(function(){
 
 function treeOnDbClick(node) {
 	 //$.messager.alert("树扩展信息内容", node.id, "info");
-	 if(node.id==5){
-		 var url='<iframe scrolling="yes" frameborder="0"  src="<%=path%>/order/index.html" style="width:100%;height:620px;"></iframe>';
-			addTab("订单列表", url);
+	 var extend=node.attributes;
+	 extend=eval("("+extend+")");
+	 if(extend.type=="tabs"){
+		 var s="<%=path%>"+extend.url;
+		 var url="<iframe scrolling='yes' frameborder='0'  src='";
+		 url+=s;
+		 url+="'  style='width:100%;height:620px;'></iframe>'";
+		 addTab("订单列表", url);
 	}else{
 		$.messager.alert("Info","其他功能在开发中。。。。。", "info");
 	}

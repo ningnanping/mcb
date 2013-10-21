@@ -2,6 +2,8 @@ package com.xingzhe.common.dao.redis;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -12,6 +14,7 @@ import com.xingzhe.framework.cache.redis.RedisCache;
 @Repository
 public class TreeRedisDao {
 
+	private static final Logger log = LoggerFactory.getLogger(TreeRedisDao.class);
 	@Autowired
 	private RedisCache redisCache;
 
@@ -22,6 +25,7 @@ public class TreeRedisDao {
 			redisCache.putMap(TREE_LIST_PREFIX+treeName, ""+parentId, JSON.toJSONString(list));
 			return true;
 		} catch (Exception e) {
+			log.error(e.getMessage());
 			return false;
 		}
 	}
@@ -31,6 +35,7 @@ public class TreeRedisDao {
 			String s=redisCache.getMap(TREE_LIST_PREFIX+treeName, ""+parentId);
 			return JSON.parseArray(s, Tree.class);
 		} catch (Exception e) {
+			log.error(e.getMessage());
 			return null;
 		}
 	}
