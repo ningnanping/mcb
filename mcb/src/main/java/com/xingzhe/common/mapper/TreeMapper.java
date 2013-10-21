@@ -19,7 +19,7 @@ public interface TreeMapper  extends SqlMapper {
 			@Result(property = "state", column = "STATE", javaType = String.class, jdbcType = JdbcType.VARCHAR), 
 			@Result(property = "text", column = "TEXT", javaType = String.class, jdbcType = JdbcType.VARCHAR),
 			@Result(property = "extend", column = "EXTEND", javaType = String.class, jdbcType = JdbcType.VARCHAR)})
-	@Select("SELECT ID, ICON_CLS, STATE,TEXT,EXTEND FROM CCTC.CCTCT_TREES WHERE PARENT_ID=#{parentId} AND IS_DEL=0  ")
+	@Select("SELECT ID, ICON_CLS, STATE,TEXT,EXTEND FROM CCTCT_TREES WHERE PARENT_ID=#{parentId} AND IS_DEL=0  ")
 	List<Tree> getTreeObjectByParentId(int parentId);
 
 	@Results(value={
@@ -28,7 +28,7 @@ public interface TreeMapper  extends SqlMapper {
 			@Result(property = "state", column = "STATE", javaType = String.class, jdbcType = JdbcType.VARCHAR), 
 			@Result(property = "text", column = "TEXT", javaType = String.class, jdbcType = JdbcType.VARCHAR),
 			@Result(property = "extend", column = "EXTEND", javaType = String.class, jdbcType = JdbcType.VARCHAR)})
-	@Select("SELECT ID, ICON_CLS, STATE, TEXT,EXTEND FROM CCTC.CCTCT_TREES WHERE TREE_NAME=#{treeName} AND IS_DEL=0")
+	@Select("SELECT ID, ICON_CLS, STATE, TEXT,EXTEND FROM CCTCT_TREES WHERE TREE_NAME=#{treeName} AND IS_DEL=0")
 //	@Options(useCache = true, flushCache = false, timeout = 10000)
 	List<Tree> getTreeObjectByTreeName(String treeName);
 }

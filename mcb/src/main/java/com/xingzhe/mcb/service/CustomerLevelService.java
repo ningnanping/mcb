@@ -1,10 +1,8 @@
 package com.xingzhe.mcb.service;
 
 import com.xingzhe.mcb.domain.CustomerLevel;
-import com.xingzhe.mcb.domain.Order;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.

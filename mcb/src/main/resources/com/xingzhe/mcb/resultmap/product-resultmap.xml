@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xingzhe.mcb.mapper.ProductMapper">
+    <!--添加缓存-->
+    <!-- 以下两个<cache>标签二选一,第一个可以输出日志,第二个不输出日志 -->
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache" readOnly="false"/>
+    <!-- <cache type="org.mybatis.caches.ehcache.EhcacheCache"/> -->
+
+<!--     <resultMap id="getProductMap" type="com.xingzhe.mcb.domain.Product"> -->
+<!--             <result column="id" property="id" javaType="java.lang.Integer" jdbcType="INTEGER"></result> -->
+<!--             <result column="name" property="createTimeText" javaType="java.lang.String" jdbcType="VARCHAR"></result> -->
+<!--             <result column="uuid" property="settlemen" javaType="java.lang.String" jdbcType="VARCHAR"></result> -->
+<!--             <collection property="listPrice" resultMap="com.xingzhe.mcb.mapper.ProductMapper.priviceMap"></collection> -->
+<!--     </resultMap> -->
+    
+<!--     <resultMap id="priviceMap" type="com.xingzhe.mcb.domain.ProductPrice"> -->
+<!--             <result column="id" property="id" javaType="java.lang.Integer" jdbcType="INTEGER"></result> -->
+<!--             <result column="vip_price" property="vipPrice" javaType="java.lang.Double" jdbcType="DECIMAL"></result> -->
+<!--             <result column="customer_level_id" property="customerLevelId" javaType="java.lang.Integer" jdbcType="INTEGER"></result> -->
+<!--     </resultMap> -->
+
+
+<!--     <sql id="sqlSelectProduct"> -->
+<!--         <![CDATA[ -->
+<!--            SELECT  -->
+<!-- 			  p1.`id`, -->
+<!-- 			  p1.`name`, -->
+<!-- 			  p1.`uuid`, -->
+<!-- 			  p1.`price`, -->
+<!-- 			  p2.`vip_price`, -->
+<!-- 			  p2.`customer_level_id`  -->
+<!-- 			FROM -->
+<!-- 			  `product` p1, -->
+<!-- 			  `product_price` p2  -->
+<!-- 			WHERE p1.`id` = p2.`product_id`  -->
+<!-- 			ORDER BY p1.id, -->
+<!-- 			  p2.`customer_level_id`  -->
+<!--         ]]> -->
+<!--     </sql> -->
+
+<!--     <select id="selectOrderList" resultMap="getSelectOrderMap"> -->
+<!--         <include refid="com.xingzhe.mcb.mapper.OrderMapper.sqlSelectProduct"/> -->
+<!--         <include refid="com.xingzhe.framework.mapper.SqlMapper.mysqlPage"/> -->
+<!--     </select> -->
+
+<!--     <select id="selectOrderCount" resultType="java.lang.Integer"> -->
+<!--         <include refid="com.xingzhe.framework.mapper.SqlMapper.mysqlTotalCountStart"/> -->
+<!--         <include refid="com.xingzhe.mcb.mapper.OrderMapper.sqlSelectProduct"/> -->
+<!--         <include refid="com.xingzhe.framework.mapper.SqlMapper.mysqlTtotalCountEnd"/> -->
+<!--     </select> -->
+</mapper>

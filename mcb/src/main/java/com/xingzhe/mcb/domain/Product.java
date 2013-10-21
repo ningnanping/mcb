@@ -1,5 +1,7 @@
 package com.xingzhe.mcb.domain;
 
+import java.util.List;
+
 import com.xingzhe.framework.domain.BaseObj;
 
 /**
@@ -23,6 +25,12 @@ public class Product extends BaseObj
      * 商品的条形码 唯一识别码
      */
     private String uuid;
+    
+    private List<ProductPrice> listPrice;
+    /**
+     * 价格
+     */
+    private double price;
     
       
     public int getId()
@@ -50,5 +58,18 @@ public class Product extends BaseObj
     {
         this.uuid = uuid;
     }
-   
+	public List<ProductPrice> getListPrice() {
+		return listPrice;
+	}
+	public void setListPrice(List<ProductPrice> listPrice) {
+		this.listPrice = listPrice;
+	}
+	public double getPrice()
+    {
+        return price;
+    }
+    public void setPrice(double price)
+    {
+        this.price = price;
+    }
 }

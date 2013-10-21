@@ -11,25 +11,6 @@ public abstract class BaseController {
 	public static final String APPLICATION_JSON_PRODUCES = "application/json;charset=UTF-8";
 	public static final String SESSION_SLRY = "SLRY";
 
-	// @ResponseBody
-	// @RequestMapping(value = "/list.json", produces =
-	// "application/json;charset=UTF-8")
-	// public abstract Object getDataForPage(@RequestParam(value = "page",
-	// required = false, defaultValue = "0") int page,
-	// @RequestParam(value = "rows", required = false, defaultValue = "20") int
-	// rows);
-	//
-	// @RequestMapping(value = "/save.json", produces =
-	// {"application/json;charset=UTF-8"})
-	// public abstract String save(Object o);
-	//
-	// @RequestMapping(value = "/update.json", produces =
-	// {"application/json;charset=UTF-8"})
-	// public abstract String update(IdentityInfo o);
-	//
-	// @RequestMapping(value = "/delete.json", produces =
-	// {"application/json;charset=UTF-8"})
-	// public abstract String del(int id);
 
 	/**
 	 * 分页起始行

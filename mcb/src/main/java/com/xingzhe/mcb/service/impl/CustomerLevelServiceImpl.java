@@ -3,13 +3,11 @@ package com.xingzhe.mcb.service.impl;
 import com.xingzhe.mcb.dao.CustomerLevelDao;
 import com.xingzhe.mcb.dao.redis.CustomerLevelRedisDao;
 import com.xingzhe.mcb.domain.CustomerLevel;
-import com.xingzhe.mcb.domain.Order;
 import com.xingzhe.mcb.service.CustomerLevelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.

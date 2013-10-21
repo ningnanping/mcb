@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href="<%=path%>/css/zhzs.css">
 </head>
 <body>
+
 	<script>window.location.href='<%=path%>/index.html';</script>
 </body>
 

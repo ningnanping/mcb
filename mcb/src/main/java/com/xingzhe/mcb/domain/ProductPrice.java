@@ -19,10 +19,6 @@ public class ProductPrice extends BaseObj
     {
         this.id = id;
     }
-    /**
-     * 价格
-     */
-    private double price;
     
     /**
      * 会员价
@@ -36,14 +32,6 @@ public class ProductPrice extends BaseObj
     private int customerLevelId;
     
     
-    public double getPrice()
-    {
-        return price;
-    }
-    public void setPrice(double price)
-    {
-        this.price = price;
-    }
     public double getVipPrice()
     {
         return vipPrice;
