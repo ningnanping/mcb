@@ -115,7 +115,7 @@ public class HessianUtil {
      * @return object 返序化的对象
      * @throws IOException
      */
-    public static <T extends Object> T deserialize(byte[] by) throws IOException {
+    public static  Object deserialize(byte[] by) throws IOException {
         if (by == null) {
             throw new NullPointerException();
         }
@@ -124,7 +124,7 @@ public class HessianUtil {
         Object obj = hi.readObject();
         hi.close();
         is.close();
-        return (T) obj;
+        return  obj;
     }
     
     /**
@@ -134,18 +134,19 @@ public class HessianUtil {
      * @return
      * @throws IOException
      */
-    public static <T extends Object> List<T> deserialize(List<byte[]> rlist) throws IOException {
+    public static   List<Object> deserialize(List<byte[]> rlist) throws IOException {
         if (rlist == null) {
             throw new NullPointerException();
         }
 
-        List<T> list = new ArrayList<T>();
+        List<Object> list = new ArrayList<Object>();
+        Object obj=null;
         for (byte[] bs : rlist) {
             if (bs == null) {
                 list.add(null);
                 continue;
             }
-            T obj = (T) deserialize(bs);
+            obj =  deserialize(bs);
             list.add(obj);
         }
 
@@ -160,18 +161,19 @@ public class HessianUtil {
      * @return
      * @throws IOException
      */
-    public static <T extends Object> List<T> deserializeZ(Set<byte[]> rSet) throws IOException {
+    public static   List<Object> deserializeZ(Set<byte[]> rSet) throws IOException {
         if (rSet == null) {
             throw new NullPointerException();
         }
 
-        List<T> list = new ArrayList<T>();
+        List<Object> list = new ArrayList<Object>();
+        Object obj=null;
         for (byte[] bs : rSet) {
             if (bs == null) {
-                list.add(null);
+                //list.add(null);
                 continue;
             }
-            T obj = (T) deserialize(bs);
+            obj =  deserialize(bs);
             list.add(obj);
         }
         return list;
@@ -192,8 +194,8 @@ public class HessianUtil {
         Map<String, Serializable> dMap = new HashMap<String, Serializable>();
 
         for (Entry<byte[], byte[]> entry : map.entrySet()) {
-            Serializable obj = deserialize(entry.getValue());
-            dMap.put(new String(entry.getKey()), obj);
+            Object obj = deserialize(entry.getValue());
+            dMap.put(new String(entry.getKey()), (Serializable) obj);
         }
 
         return dMap;

@@ -365,26 +365,18 @@ public class RedisAdapter implements RedisCache {
 	 * @param fields
 	 * @return
 	 */
-	public <V extends Serializable> List<V> getMap(final String key,
-			final String... fields) {
+	@SuppressWarnings("unchecked")
+	public List<?> getMap(final String key, final String... fields) {
 
-		return redisTemplate.execute(new RedisCallback<List<V>>() {
+		return redisTemplate.execute(new RedisCallback<List<Object>>() {
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see
-			 * com.jd.as.common.cache.redis.core.RedisCallback#doInRedis(redis
-			 * .clients.jedis.ShardedJedis)
-			 */
-			public List<V> doInRedis(ShardedJedis jedis) {
+			public List<Object> doInRedis(ShardedJedis jedis) {
 				List<byte[]> rlist = jedis.hmget(key.getBytes(),
 						HessianUtil.strArrayToByteArray(fields));
 
 				try {
 					if (CollectionUtils.isEmpty(rlist)) {
 						return null;
-
 					}
 					return HessianUtil.deserialize(rlist);
 				} catch (IOException e) {
@@ -435,17 +427,11 @@ public class RedisAdapter implements RedisCache {
 	 * 
 	 * @see com.jd.as.common.cache.redis.RedisCache#getList(java.lang.String[])
 	 */
-	public <V extends Serializable> List<V> getList(final String... keys) {
-		return redisTemplate.execute(new RedisCallback<List<V>>() {
+	@SuppressWarnings("unchecked")
+	public List<Object> getList(final String... keys) {
+		return redisTemplate.execute(new RedisCallback<List<Object>>() {
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see
-			 * com.jd.as.common.cache.redis.core.RedisCallback#doInRedis(redis
-			 * .clients.jedis.ShardedJedis)
-			 */
-			public List<V> doInRedis(ShardedJedis jedis) {
+			public List<Object> doInRedis(ShardedJedis jedis) {
 
 				List<byte[]> list = jedis.getShard(keys[0]).mget(
 						HessianUtil.strArrayToByteArray(keys));
@@ -821,11 +807,12 @@ public class RedisAdapter implements RedisCache {
 		});
 	}
 
-	public <V extends Serializable> List<V> getSets(final String key,
+	@SuppressWarnings("unchecked")
+	public   List<Object> getSets(final String key,
 			final int start, final int end) {
-		return redisTemplate.execute(new RedisCallback<List<V>>() {
+		return redisTemplate.execute(new RedisCallback<List<Object>>() {
 
-			public List<V> doInRedis(ShardedJedis jedis) {
+			public List<Object> doInRedis(ShardedJedis jedis) {
 				try {
 					return HessianUtil.deserializeZ(jedis.zrange(
 							key.getBytes(), start, end));
