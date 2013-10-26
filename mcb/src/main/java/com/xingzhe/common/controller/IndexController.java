@@ -26,7 +26,6 @@ public class IndexController {
 		String uuid=CookieUtil.getInstance().getCookieValueByName(request, "uuid");
 		String acessTokenfrom=null;
 		if(userName==null||platFrom==null||uuid==null){
-			 
 			return  "resourse/jsp/common/login";  
 		}
 		acessTokenfrom =userLoginCache.getAcessToken(userName, platFrom, uuid);

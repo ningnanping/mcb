@@ -12,6 +12,4 @@
 
     <import resource="com/xingzhe/framework/applicationContext-datasource.xml"/>
     <import resource="com/xingzhe/framework/applicationContext-ibatis3.xml"/>
-    <!--  redis 缓存-->
-    <import resource="com/xingzhe/framework/applicationContext-Redis.xml"/>
 </beans>

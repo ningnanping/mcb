@@ -13,7 +13,7 @@ public final class PropertiesReaderUtil {
 
 	private static Properties pro;
 
-	public static void init(String file) {
+	public synchronized static void init(String file) {
 		if (null == pro) {
 			pro = new Properties();
 		}

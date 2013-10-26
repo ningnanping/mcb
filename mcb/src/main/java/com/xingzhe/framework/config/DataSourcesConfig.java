@@ -2,7 +2,6 @@ package com.xingzhe.framework.config;
 
 import java.sql.SQLException;
 import java.util.Properties;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -22,7 +21,7 @@ public class DataSourcesConfig {
 	}
 
 	@Bean(name = "dataSource", destroyMethod = "close", initMethod = "init")
-	public DruidDataSource dataSource1() {
+	public DruidDataSource dataSource() {
 		logger.debug("初始化DruidDataSource 数据库连接池");
 		Properties pro = PropertiesReaderUtil.getPro();
 
@@ -94,7 +93,48 @@ public class DataSourcesConfig {
 	@Bean(name = "jdbcTemplate")
 	public JdbcTemplate getJdbcTemplate() {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
-		jdbcTemplate.setDataSource(dataSource1());
+		jdbcTemplate.setDataSource(dataSource());
 		return jdbcTemplate;
 	}
+	
+    
+	
+//	@Bean(name="sqlSessionFactory")
+//	public  SqlSessionFactoryBean getSqlSessionFactoryBean(){
+//		SqlSessionFactoryBean sf=new SqlSessionFactoryBean();
+//		sf.setDataSource(dataSource());
+//		Resource res = new ClassPathResource("SqlMapConfig.xml");
+//		sf.setConfigLocation(res);
+//		try {
+//			sf.setMapperLocations(findAllClassPathResources("com/xingzhe/*/resultmap/*-resultmap.xml"));
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		return sf;
+//	} 
+//	
+//	@Bean
+//	public MapperScannerConfigurer getMapperScannerConfigurer(){
+//		MapperScannerConfigurer ms=new MapperScannerConfigurer();
+//		ms.setBasePackage("com.xingzhe.**.mapper");
+//		ms.setMarkerInterface(SqlMapper.class);
+//		return ms;
+//	}
+//	
+//	private Resource[] findAllClassPathResources(String location)
+//			throws IOException {
+//		String path = location;
+//		if (path.startsWith("/")) {
+//			path = path.substring(1);
+//		}
+//		Enumeration<?> resourceUrls = getClass().getClassLoader().getResources(
+//				path);
+//		Set<Resource> result = new LinkedHashSet<Resource>(16);
+//		while (resourceUrls.hasMoreElements()) {
+//			URL url = (URL) resourceUrls.nextElement();
+//			result.add(new UrlResource(url));
+//		}
+//		return result.toArray(new Resource[result.size()]);
+//	}
+	
 }
