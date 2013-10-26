@@ -9,7 +9,6 @@ import com.xingzhe.common.domain.User;
 import com.xingzhe.framework.mapper.SqlMapper;
 
 import org.mybatis.caches.ehcache.LoggingEhcache;
-import org.springframework.stereotype.Component;
 
 @CacheNamespace(size = 1024,implementation = LoggingEhcache.class)
 public interface UserMapper extends SqlMapper {
