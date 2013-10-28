@@ -5,11 +5,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
-<%@ include file="/base.jsp"%>
-<link rel="stylesheet" type="text/css" href="<%=path%>/css/zhzs.css">
+<%
+String basePath = request.getContextPath();
+String  path= request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+basePath;
+%>
 </head>
 <body>
-
 	<script>window.location.href='<%=path%>/index.html';</script>
 </body>
 

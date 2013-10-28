@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>妈妈带宝宝管理系统</title>
-<%@ include file="/base.jsp"%>
+<%@ include file="../base.jsp"%>
 <link rel="stylesheet" type="text/css" href="<%=path%>/css/login.css">
 <script>
 $(function(){

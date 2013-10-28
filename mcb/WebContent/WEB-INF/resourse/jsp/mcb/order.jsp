@@ -10,7 +10,7 @@
         String start=DateUtil.getFirstDay(false);
         String end=DateUtil.getLastDay(false);
     %>
-    <%@ include file="/base.jsp"%>
+    <%@ include file="../base.jsp"%>
 </head>
 <body>
 <table id="dg">

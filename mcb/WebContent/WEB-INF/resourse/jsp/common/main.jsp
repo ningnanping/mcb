@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>妈妈带宝宝</title>
-<%@ include file="/base.jsp"%> 
+<%@ include file="../base.jsp"%> 
 <style type="text/css">
 <!--
 body,td,th {
