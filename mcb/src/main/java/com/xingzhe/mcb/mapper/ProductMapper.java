@@ -8,6 +8,7 @@ import com.xingzhe.mcb.domain.Product;
 
 public interface ProductMapper extends SqlMapper {
 	
-	List<Product> getAllProduct(Map<String,Object> map);
+	List<Product> selectProductListForPage(Map<String,Object> map);
+	int selectProductListForTotal(Map<String,Object> map);
 
 }
