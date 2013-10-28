@@ -18,7 +18,7 @@ public class TreeRedisDao {
 	@Autowired
 	private RedisCache redisCache;
 
-	static final String TREE_LIST_PREFIX = "CCTC.SYSTEM.TREE.";
+	static final String TREE_LIST_PREFIX = "CCTC.XINGZHE.COMMON.DOMAIN.TREE.";
 
 	public boolean saveListTree(final int parentId, final String treeName, final List<Tree> list) {
 		try {

@@ -9,7 +9,7 @@
 	<description>妈妈带宝宝</description>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring-version>3.2.4.RELEASE</spring-version>
+		<spring-version>4.0.0.BUILD-SNAPSHOT</spring-version>
 	</properties>
 	<repositories>
 		<repository>
@@ -18,6 +18,14 @@
 			<url>http://shardbatis.googlecode.com/svn/trunk/repository</url>
 			<snapshots>
 				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>spring-snapshots</id>
+			<name>Spring Snapshots</name>
+			<url>http://repo.spring.io/snapshot</url>
+			<snapshots>
+				<enabled>true</enabled>
 			</snapshots>
 		</repository>
 		<repository>
