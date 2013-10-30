@@ -35,7 +35,7 @@ CREATE TABLE `cctct_trees` (
 
 /*Data for the table `cctct_trees` */
 
-insert  into `cctct_trees`(`ID`,`ICON_CLS`,`PARENT_ID`,`SORT_NUM`,`STATE`,`TEXT`,`TREE_NAME`,`EXTEND`,`IS_DEL`) values (1,'icon-add',0,NULL,'','123','123456','132',0),(2,'icon-reload',1,1,'closed','456',NULL,'132',0),(3,'icon-edit',1,2,'closed','系统管理',NULL,'132',0),(4,'icon-remove',3,3,'','日志管理',NULL,'33342',0),(5,'icon-save',2,1,'','订单查看',NULL,'{\"type\":\"tabs\",\"url\":\"/order/index.html\"}',0),(6,'icon-cut',2,3,'','户口类型人数统计图',NULL,'24332',0),(7,'icon-ok',2,2,'','户口类型统人数比例图',NULL,'23423432',0),(8,'icon-ok',3,1,'','清除缓存',NULL,NULL,0),(9,'icon-ok',3,1,'','用户管理',NULL,NULL,0);
+insert  into `cctct_trees`(`ID`,`ICON_CLS`,`PARENT_ID`,`SORT_NUM`,`STATE`,`TEXT`,`TREE_NAME`,`EXTEND`,`IS_DEL`) values (1,'icon-add',0,NULL,'','123','123456','132',0),(2,'icon-reload',1,1,'closed','456',NULL,'132',0),(3,'icon-edit',1,2,'closed','系统管理',NULL,'132',0),(4,'icon-remove',3,3,'','日志管理',NULL,'33342',0),(5,'icon-save',2,1,'','订单查看',NULL,'{\"type\":\"tabs\",\"url\":\"/order/index.html\"}',0),(6,'icon-cut',2,3,'','商品列表',NULL,'{\"type\":\"tabs\",\"url\":\"/product/index.html\"}',0),(7,'icon-ok',2,2,'','客户列表',NULL,'{\"type\":\"tabs\",\"url\":\"/customer/index.html\"}',0),(8,'icon-ok',3,1,'','清除缓存',NULL,NULL,0),(9,'icon-ok',3,1,'','用户管理',NULL,NULL,0);
 
 /*Table structure for table `customer` */
 
@@ -55,7 +55,9 @@ CREATE TABLE `customer` (
   `score` int(11) NOT NULL DEFAULT '0' COMMENT '消费积分',
   `hand_id` int(11) NOT NULL COMMENT '经手人ID',
   `baby_month` int(11) NOT NULL DEFAULT '0' COMMENT '宝宝月份',
+  `vip_id` varchar(10) NOT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `un_vip_id` (`vip_id`),
   KEY `FK_customer_lever` (`customer_level_id`),
   KEY `FK_customer_user_id` (`user_id`),
   KEY `FK_customer_agent` (`agent_id`),
@@ -64,11 +66,11 @@ CREATE TABLE `customer` (
   CONSTRAINT `FK_customer_hand` FOREIGN KEY (`hand_id`) REFERENCES `employee` (`id`),
   CONSTRAINT `FK_customer_lever` FOREIGN KEY (`customer_level_id`) REFERENCES `customer_level` (`id`),
   CONSTRAINT `FK_customer_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='客户表';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='客户表';
 
 /*Data for the table `customer` */
 
-insert  into `customer`(`id`,`name`,`customer_level_id`,`user_id`,`id_del`,`sex`,`phone_number`,`create_time`,`email`,`agent_id`,`score`,`hand_id`,`baby_month`) values (1,'lu',1,2,0,1,'13611582911','2013-10-06',NULL,1,0,1,1);
+insert  into `customer`(`id`,`name`,`customer_level_id`,`user_id`,`id_del`,`sex`,`phone_number`,`create_time`,`email`,`agent_id`,`score`,`hand_id`,`baby_month`,`vip_id`) values (1,'lu',1,2,0,1,'13611582911','2013-10-06','132@qq.com',1,600,1,1,'C000000001'),(2,'lu1',1,2,0,0,'121212121221','2013-10-30','wqe@123.com',1,156,2,1,'C000000002'),(3,'lu2',1,2,0,0,'213123213311','2013-10-31','2321@aa.com',1,4132,1,1,'C000000003'),(4,'lu3',1,2,0,1,'21312321222','2013-10-31','12321@13.com',1,21321,1,1,'C000000004');
 
 /*Table structure for table `customer_level` */
 
@@ -266,12 +268,13 @@ CREATE TABLE `product` (
   `name` varchar(50) NOT NULL COMMENT '商品名称',
   `uuid` varchar(50) NOT NULL COMMENT '一般是商品的条形码',
   `price` decimal(10,4) NOT NULL,
+  `unit` char(1) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='商品表';
 
 /*Data for the table `product` */
 
-insert  into `product`(`id`,`name`,`uuid`,`price`) values (1,'奶粉1','1234567','289.0000'),(2,'奶粉2','1234566','299.0000');
+insert  into `product`(`id`,`name`,`uuid`,`price`,`unit`) values (1,'奶粉1','1234567','289.0000','罐'),(2,'奶粉2','1234566','299.0000','罐');
 
 /*Table structure for table `product_cut` */
 
@@ -299,6 +302,7 @@ CREATE TABLE `product_price` (
   `product_id` int(11) NOT NULL,
   `vip_price` decimal(10,4) NOT NULL,
   `customer_level_id` smallint(11) NOT NULL,
+  `unit` char(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_product_price_customer_level` (`customer_level_id`),
   CONSTRAINT `FK_product_price_customer_level` FOREIGN KEY (`customer_level_id`) REFERENCES `customer_level` (`id`)
@@ -306,7 +310,7 @@ CREATE TABLE `product_price` (
 
 /*Data for the table `product_price` */
 
-insert  into `product_price`(`id`,`product_id`,`vip_price`,`customer_level_id`) values (16,1,'288.5000',1),(17,1,'286.5000',2),(18,1,'284.5000',3),(19,1,'282.5000',4),(20,1,'280.5000',5),(21,1,'289.0000',0),(22,2,'399.0000',0),(23,2,'399.0000',1),(24,2,'399.0000',2),(25,2,'399.0000',3),(26,2,'380.5000',4),(27,2,'370.5000',5);
+insert  into `product_price`(`id`,`product_id`,`vip_price`,`customer_level_id`,`unit`) values (16,1,'288.5000',1,''),(17,1,'286.5000',2,''),(18,1,'284.5000',3,''),(19,1,'282.5000',4,''),(20,1,'280.5000',5,''),(21,1,'289.0000',0,''),(22,2,'399.0000',0,''),(23,2,'399.0000',1,''),(24,2,'399.0000',2,''),(25,2,'399.0000',3,''),(26,2,'380.5000',4,''),(27,2,'370.5000',5,'');
 
 /*Table structure for table `sequence` */
 
