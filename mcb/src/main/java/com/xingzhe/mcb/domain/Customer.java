@@ -12,6 +12,8 @@ public class Customer extends BaseObj
      */
     private static final long serialVersionUID = -1208030727104403725L;
     
+    private String  vipId;
+    
     private int id;
     
     /**
@@ -73,6 +75,16 @@ public class Customer extends BaseObj
      * 宝贝月份
      */
     private int babyMonth;
+    
+    private String agentText;
+    
+    private String handText;
+    
+    private String customerLevelIdText;
+    
+    private String  sexText;
+    
+    private String createTimeText;
 
     public int getId()
     {
@@ -119,7 +131,15 @@ public class Customer extends BaseObj
         return sex;
     }
 
-    public void setSex(int sex)
+    public String getSexText() {
+		return sexText;
+	}
+
+	public void setSexText(String sexText) {
+		this.sexText = sexText;
+	}
+
+	public void setSex(int sex)
     {
         this.sex = sex;
     }
@@ -203,6 +223,46 @@ public class Customer extends BaseObj
     {
         this.babyMonth = babyMonth;
     }
+
+	public String getVipId() {
+		return vipId;
+	}
+
+	public void setVipId(String vipId) {
+		this.vipId = vipId;
+	}
+
+	public String getAgentText() {
+		return agentText;
+	}
+
+	public void setAgentText(String agentText) {
+		this.agentText = agentText;
+	}
+
+	public String getHandText() {
+		return handText;
+	}
+
+	public void setHandText(String handText) {
+		this.handText = handText;
+	}
+
+	public String getCustomerLevelIdText() {
+		return customerLevelIdText;
+	}
+
+	public void setCustomerLevelIdText(String customerLevelIdText) {
+		this.customerLevelIdText = customerLevelIdText;
+	}
+
+	public String getCreateTimeText() {
+		return createTimeText;
+	}
+
+	public void setCreateTimeText(String createTimeText) {
+		this.createTimeText = createTimeText;
+	}
     
     
 }

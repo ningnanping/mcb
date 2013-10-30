@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xingzhe.mcb.mapper.CustomerMapper">
+	<!--添加缓存 -->
+	<!-- 以下两个<cache>标签二选一,第一个可以输出日志,第二个不输出日志 -->
+	<cache type="org.mybatis.caches.ehcache.LoggingEhcache" readOnly="false" />
+	<!-- <cache type="org.mybatis.caches.ehcache.EhcacheCache"/> -->
+
+	<resultMap id="getSelectCustomerrMap" type="com.xingzhe.mcb.domain.Customer">
+		<result column="id" property="id" javaType="java.lang.Integer"
+			jdbcType="INTEGER"></result>
+		<result column="name" property="name" javaType="java.lang.String"
+			jdbcType="VARCHAR"></result>
+		<result column="customer_level_id" property="customerLevelId"
+			javaType="java.lang.Integer" jdbcType="INTEGER"></result>
+		<result column="user_id" property="userId" javaType="java.lang.Integer"
+			jdbcType="INTEGER"></result>
+		<result column="sex" property="sex" javaType="java.lang.Integer"
+			jdbcType="INTEGER"></result>
+		<result column="phone_number" property="phoneNumber" javaType="java.lang.String"
+			jdbcType="VARCHAR"></result>
+		<result column="create_Time_Text" property="createTimeText" javaType="java.lang.String"
+			jdbcType="VARCHAR"></result>
+		<result column="email" property="email" javaType="java.lang.String"
+			jdbcType="VARCHAR"></result>
+		<result column="agent_Id" property="agentId" javaType="java.lang.Integer"
+			jdbcType="INTEGER"></result>
+		<result column="score" property="score" javaType="java.lang.Integer"
+			jdbcType="INTEGER"></result>
+		<result column="hand_Id" property="handId" javaType="java.lang.Integer"
+			jdbcType="INTEGER"></result>
+		<result column="baby_month" property="babyMonth" javaType="java.lang.Integer"
+			jdbcType="INTEGER"></result>
+		<result column="vip_id" property="vipId" javaType="java.lang.String"
+			jdbcType="VARCHAR"></result>
+		<result column="agent_text" property="agentText" javaType="java.lang.String"
+			jdbcType="VARCHAR"></result>
+		<result column="hand_text" property="handText" javaType="java.lang.String"
+			jdbcType="VARCHAR"></result>
+		<result column="customer_LevelId_Text" property="customerLevelIdText" javaType="java.lang.String"
+			jdbcType="VARCHAR"></result>
+		<result column="sex_Text" property="sexText" javaType="java.lang.String"
+			jdbcType="VARCHAR"></result>
+	</resultMap>
+
+	<sql id="sqlSelectCustomer">
+        <![CDATA[
+         SELECT 
+			  t.id,
+			  t.name,
+			  t.customer_level_id,
+			  t.user_id,
+			  t.id_del,
+			  t.sex,
+			  t.phone_number,
+			  DATE_FORMAT(t.create_time,'%Y-%c-%d %k:%i:%S') AS create_time_text,
+			  t.email,
+			  t.agent_id,
+			  t.score,
+			  t.hand_id,
+			  t.baby_month,
+			  t.vip_id,
+			  t1.name AS agent_text,
+			  t2.name AS hand_text,
+			  c.name AS customer_LevelId_Text,
+			  CASE WHEN t.sex = 0 THEN '男' ELSE '女' END  AS sex_text
+			FROM
+			  customer t 
+			  LEFT JOIN customer_level c 
+			    ON t.customer_level_id = c.id 
+			  LEFT JOIN employee t1 
+			    ON t.agent_id = t1.id 
+			  LEFT JOIN employee t2 
+			    ON t.hand_id = t2.id 
+        ]]>
+	</sql>
+
+	<select id="selectCustomerListForPage" resultMap="getSelectCustomerrMap">
+		<include refid="com.xingzhe.mcb.mapper.CustomerMapper.sqlSelectCustomer" />
+		<include refid="com.xingzhe.framework.mapper.SqlMapper.mysqlPage" />
+	</select>
+
+	<select id="selectCustomerListForCount" resultType="java.lang.Integer">
+		<include refid="com.xingzhe.framework.mapper.SqlMapper.mysqlTotalCountStart" />
+		<include refid="com.xingzhe.mcb.mapper.CustomerMapper.sqlSelectCustomer" />
+		<include refid="com.xingzhe.framework.mapper.SqlMapper.mysqlTtotalCountEnd" />
+	</select>
+</mapper>
