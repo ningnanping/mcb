@@ -8,16 +8,7 @@
     <%@ include file="../base.jsp"%>
 </head>
 <body>
-<table id="dg">
-    <thead>
-    <tr>
-        <th data-options="field:'id',align:'center',width:200,hidden:true"></th>
-        <th data-options="field:'name',align:'center',width:200">名称</th>
-        <th data-options="field:'uuid',align:'center',width:200">唯一识别码</th>
-        <th data-options="field:'priceText',align:'center',width:200">价格</th>
-    </tr>
-    </thead>
-</table>
+	<table id="dg"> </table>
 </body>
 
 <script type="text/javascript">
@@ -28,11 +19,23 @@
         pagination:true,
         fit:true,
         fitColumns:true,
+        columns:[[{field:'id',align:'center',width:200,hidden:true},
+                  {field:'name',align:'center',width:200,title:'名称'},
+                  {field:'uuid',align:'center',width:200,title:'唯一识别码'},
+                  {field:'priceText',align:'center',width:200,title:'价格',
+                	  formatter:function(value,rowData,rowIndex){
+                		  return "<a href='javacript:;' onclick='queryVipPrice();'>"+value+"</a>";
+                		  }
+                	  }
+                 ]],
         height: 'auto',
         url: "<%=path%>/product/list.json",
         pageSize : 15,
         pageList : [ 15, 20, 25, 35 ]
     });
 
+    function queryVipPrice(){
+    	alert(123);
+    }
 </script>
 </html>

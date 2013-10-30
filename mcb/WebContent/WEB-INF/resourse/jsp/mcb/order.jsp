@@ -8,18 +8,7 @@
     <%@ include file="../base.jsp"%>
 </head>
 <body>
-<table id="dg">
-    <thead>
-    <tr>
-        <th data-options="field:'id',align:'center',width:200,hidden:true"></th>
-        <th data-options="field:'createTimeText',align:'center',width:200">创建时间</th>
-        <th data-options="field:'settlemen',align:'center',width:200">付款方式</th>
-        <th data-options="field:'total',align:'center',width:200">总金额</th>
-        <th data-options="field:'customerId',align:'center',width:200,hidden:true"></th>
-        <th data-options="field:'name',align:'center',width:200">用户名称</th>
-    </tr>
-    </thead>
-</table>
+		<table id="dg"></table>
 </body>
 
 <script type="text/javascript">
@@ -29,6 +18,13 @@
         singleSelect:true,
         pagination:true,
         fit:true,
+        columns:[[{field:'id',align:'center',width:200,hidden:true},
+                  {field:'createTimeText',align:'center',width:200,title:'创建时间'},
+                  {field:'settlemen',align:'center',width:200,title:'付款方式'},
+                  {field:'total',align:'center',width:200,title:'总金额'},
+                  {field:'customerId',align:'center',width:200,hidden:true},
+                  {field:'name',align:'center',width:200,title:'用户名称'},
+                  ]],
         fitColumns:true,
         height: 'auto',
         url: "<%=path%>/order/list.json",
