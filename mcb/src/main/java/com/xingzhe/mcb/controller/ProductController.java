@@ -20,14 +20,14 @@ import com.xingzhe.mcb.mapper.ProductMapper;
 @RequestMapping(value="/product")
 public class ProductController extends BaseController {
 	
+		
 	@Autowired
 	private ProductMapper productMapper;
 	
 	@RequestMapping("/index.html")
 	public String index() {
-		return "resourse/jsp/mcb/priduct";
+		return "resourse/jsp/mcb/product";
 	}
-
 	
 	@ResponseBody
 	@RequestMapping(value="/list.json",produces= MediaType.APPLICATION_JSON_VALUE)

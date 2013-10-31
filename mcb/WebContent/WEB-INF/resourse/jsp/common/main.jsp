@@ -132,7 +132,10 @@ a{TEXT-DECORATION:none}
 	<div region="center" border="false">
 		<div id="tabs" class="easyui-tabs" fit="true" border="false"
 			plain="true">
-			<div title="欢迎"></div>
+			<div title="欢迎">
+				<div align="center" style="position:absolute;top:50%;left:50%;margin:-150px 0 0 -200px;width:400px;height:300px;">
+				<h1>欢迎使用妈妈带宝宝管理系统</h1></div>
+			</div>
 		</div>
 	</div>
 

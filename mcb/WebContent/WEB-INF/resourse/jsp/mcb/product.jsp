@@ -12,6 +12,7 @@
 </body>
 
 <script type="text/javascript">
+	
     $('#dg').datagrid({
         width:$(this).width()*0.98,
         rownumbers:true,
