@@ -32,19 +32,21 @@
 	                </tr>
 	                <tr>
 	               		<td> Email:</td>
-	               		<td><input name="email" class="easyui-validatebox" data-options="validType:'email'"></td> 
+	               		<td><input name="email" class="easyui-validatebox" data-options="validType:'email'"></td>
+	               		<td>积分:</td>
+	               		<td><input name="score"  disabled="disabled" /></td>  
+	               			                </tr>
+	                <tr>
+	               		
 	               		<td>代理人:</td>
 	               		<td><input name="agentId" class="easyui-combobox" required="true" data-options="valueField:'id',textField:'name',url:'<%=path%>/common/employee.json'"></td> 
-	                </tr>
-	                <tr>
-	               		<td>积分:</td>
-	               		<td><input name="score"  disabled="disabled" /></td> 
+	               		
 	               		<td>经手人:</td>
 	               		<td><input name="handId" class="easyui-combobox" required="true" data-options="valueField:'id',textField:'name',url:'<%=path%>/common/employee.json'"></td> 
 	                </tr>
 	                <tr>
 	               		<td>宝宝月份:</td>
-	               		<td><input name="babyMonth"></td> 
+	               		<td><input name="babyMonth" required="true" class="easyui-numberbox" ></td> 
 	                </tr>
 	            </table>
 	        </form>
