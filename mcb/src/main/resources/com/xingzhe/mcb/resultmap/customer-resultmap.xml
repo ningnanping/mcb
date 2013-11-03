@@ -72,6 +72,7 @@
 			    ON t.agent_id = t1.id 
 			  LEFT JOIN employee t2 
 			    ON t.hand_id = t2.id 
+			WHERE t.id_del=0
         ]]>
 	</sql>
 
@@ -85,4 +86,62 @@
 		<include refid="com.xingzhe.mcb.mapper.CustomerMapper.sqlSelectCustomer" />
 		<include refid="com.xingzhe.framework.mapper.SqlMapper.mysqlTtotalCountEnd" />
 	</select>
+	
+	
+	<select id="getVipId" resultType="java.lang.Integer">
+		<![CDATA[
+			SELECT nextval('vipID') as  vip_id FROM DUAL
+		]]> 
+	</select>
+	
+	<update id="updateCustomer" flushCache="true">
+		<![CDATA[
+			UPDATE customer
+				SET name = #{name},
+				  customer_level_id = #{customerLevelId},
+				  sex = #{sex},
+				  phone_number = #{phoneNumber},
+				  email = #{email},
+				  agent_id = #{agentId},
+				  hand_id =#{handId},
+				  baby_month = #{babyMonth}
+			WHERE id = #{id}
+		]]>
+	</update>
+	
+	
+	<update id="delCustomer" flushCache="true">
+		<![CDATA[
+				UPDATE customer
+					SET id_del = 1
+				WHERE id = #{id}
+			]]>
+	</update>
+	
+	
+	<insert id="saveCustomer">
+		<![CDATA[
+				INSERT INTO customer
+			            (name,
+			             customer_level_id,
+			             sex,
+			             phone_number,
+			             create_time,
+			             email,
+			             agent_id,
+			             hand_id,
+			             baby_month,
+			             vip_id)
+			VALUES (#{name},
+			        #{customerLevelId},
+			        #{sex},
+			        #{phoneNumber},
+			        #{createTime},
+			        #{email},
+			        #{agentId},
+			        #{handId},
+			        #{babyMonth},
+			        #{vipId})
+						]]>
+	</insert>
 </mapper>

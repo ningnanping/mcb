@@ -11,4 +11,12 @@ public interface CustomerMapper extends SqlMapper {
 	List<Customer> selectCustomerListForPage(Map<String, Object> map);
 
 	int selectCustomerListForCount(Map<String, Object> map);
+	
+	void  updateCustomer(Customer customer);
+	
+	void  delCustomer(int id);
+	
+	void saveCustomer(Customer customer);
+	
+	int getVipId();
 }

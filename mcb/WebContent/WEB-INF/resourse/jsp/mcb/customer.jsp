@@ -23,7 +23,7 @@
 	                </tr>
 	                <tr>
 		                <td>性别:</td>
-		                <td><select id="sex" class="easyui-combobox" style="width:153px;">
+		                <td><select id="sex" class="easyui-combobox" style="width:153px;" name="sex">
 			                <option value="0">男</option>
 			                <option value="1">女</option>
 		               	 </select></td> 
@@ -38,7 +38,7 @@
 	                </tr>
 	                <tr>
 	               		<td>积分:</td>
-	               		<td><input name="score" disabled="disabled" value="0"/></td> 
+	               		<td><input name="score" disabled="disabled" /></td> 
 	               		<td>经手人:</td>
 	               		<td><input name="handId" required="true"></td> 
 	                </tr>
@@ -65,7 +65,7 @@
 		    handler:function(){
 		    	 $('#dlg').dialog('open').dialog('setTitle','新增客户信息');
 		    	 $('#fm').form('clear');
-		    	 url="<%=path%>/customer/save.json";
+		    	 url="<%=path%>/customer/save.html";
 		    }
 		},{
 		    text:'修改',
@@ -84,7 +84,32 @@
 		    text:'删除',
 		    iconCls:'icon-cancel',
 		    handler:function(){
-		    	alert('save');
+		    	 var row = $('#dg').datagrid('getSelected');
+		    	 if (row){
+		    		 $.messager.confirm('Confirm','确定删除该条客户信息?',function(r){
+		                 if (r){
+		                     $.post("<%=path%>/customer/del.html",{id:row.id},function(result){
+		                         if (result.code==1000){
+		                         	$('#dg').datagrid('reload');
+		                         	setTimeout(function(){
+		                         		$.messager.show({
+		                                     title: 'INFO',
+		                                     msg: result.desc
+		                                 });
+		                         	},1000);
+		                         } else {
+		                             $.messager.show({
+		                                 title: 'Error',
+		                                 msg: result.desc
+		                             });
+		                         }
+		                     },'json');
+		                 }
+		             });
+		    	 }else{
+		    		 $.messager.alert("ERROR","请选着一条数据修改","ERROR");
+		    	 }
+		    	
 		    }
 		}];
 		
@@ -117,7 +142,7 @@
 	    
 	    function saveCustomer(){
 	    	 $('#fm').form('submit',{
-	         	url:url,
+	         	 url:url,
 	             onSubmit: function(){
 	                 return $(this).form('validate');
 	             },

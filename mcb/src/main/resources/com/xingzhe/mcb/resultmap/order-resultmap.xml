@@ -16,7 +16,7 @@
     </resultMap>
 
     <!-- 添加订单存储过程 -->
-    <select id="addOrder" statementType="CALLABLE">
+    <select id="addOrder" statementType="CALLABLE" flushCache="true">
 		<![CDATA[
     		{call pro_order_add (#{customerId,mode=IN,jdbcType=INTEGER},#{productList,mode=IN,jdbcType=VARCHAR})}
         ]]>
