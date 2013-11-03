@@ -50,7 +50,6 @@
 			  t.name,
 			  t.customer_level_id,
 			  t.user_id,
-			  t.id_del,
 			  t.sex,
 			  t.phone_number,
 			  DATE_FORMAT(t.create_time,'%Y-%c-%d %k:%i:%S') AS create_time_text,
@@ -72,7 +71,7 @@
 			    ON t.agent_id = t1.id 
 			  LEFT JOIN employee t2 
 			    ON t.hand_id = t2.id 
-			WHERE t.id_del=0
+			WHERE t.is_del=0
         ]]>
 	</sql>
 
@@ -113,7 +112,7 @@
 	<update id="delCustomer" flushCache="true">
 		<![CDATA[
 				UPDATE customer
-					SET id_del = 1
+					SET is_del = 1
 				WHERE id = #{id}
 			]]>
 	</update>

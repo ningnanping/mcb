@@ -1,13 +1,14 @@
 package com.xingzhe.mcb.service.impl;
 
-import com.xingzhe.mcb.dao.CustomerLevelDao;
-import com.xingzhe.mcb.dao.redis.CustomerLevelRedisDao;
-import com.xingzhe.mcb.domain.CustomerLevel;
-import com.xingzhe.mcb.service.CustomerLevelService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.xingzhe.framework.domain.SelectBoxObj;
+import com.xingzhe.mcb.dao.CustomerLevelDao;
+import com.xingzhe.mcb.dao.redis.CustomerLevelRedisDao;
+import com.xingzhe.mcb.service.CustomerLevelService;
 
 /**
  * Created with IntelliJ IDEA.
@@ -30,8 +31,8 @@ public class CustomerLevelServiceImpl implements CustomerLevelService {
      * 在缓存中
      * */
     @Override
-    public List<CustomerLevel> getAllCustomerLevel() {
-        List<CustomerLevel> list = customerLevelRedisDao.getAllCustomerLevel();
+    public List<SelectBoxObj> getAllCustomerLevel() {
+        List<SelectBoxObj> list = customerLevelRedisDao.getAllCustomerLevel();
         if (list == null || list.size() == 0) {
             list = customerLevelDao.getAllCustomerLevel();
             if (list != null && list.size() != 0) {

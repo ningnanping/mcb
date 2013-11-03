@@ -19,7 +19,7 @@
 		               	<input name="name" class="easyui-validatebox" required="true"></td>
 		                <td> 客户等级:</td>
 		                <td> <input class="easyui-combobox" id="customerLevelId" name="customerLevelId" required="true" 
-		                data-options="valueField:'id',textField:'name',url:'<%=path%>/common/employeeType.json'"></td> 
+		                data-options="valueField:'id',textField:'name',url:'<%=path%>/common/customerLevel.json'"></td> 
 	                </tr>
 	                <tr>
 		                <td>性别:</td>
@@ -34,13 +34,13 @@
 	               		<td> Email:</td>
 	               		<td><input name="email" class="easyui-validatebox" data-options="validType:'email'"></td> 
 	               		<td>代理人:</td>
-	               		<td><input name="agentId" required="true"></td> 
+	               		<td><input name="agentId" class="easyui-combobox" required="true" data-options="valueField:'id',textField:'name',url:'<%=path%>/common/employee.json'"></td> 
 	                </tr>
 	                <tr>
 	               		<td>积分:</td>
-	               		<td><input name="score" disabled="disabled" /></td> 
+	               		<td><input name="score"  disabled="disabled" /></td> 
 	               		<td>经手人:</td>
-	               		<td><input name="handId" required="true"></td> 
+	               		<td><input name="handId" class="easyui-combobox" required="true" data-options="valueField:'id',textField:'name',url:'<%=path%>/common/employee.json'"></td> 
 	                </tr>
 	                <tr>
 	               		<td>宝宝月份:</td>
@@ -121,17 +121,17 @@
 	        pagination:true,
 	        fit:true,
 	        columns:[[{field:'id',align:'center',width:200,hidden:true},
+	                  {field:'vipId',align:'center',width:200,title:'会员号'},
 	                  {field:'name',align:'center',width:200,title:'姓名'},
-	                  {field:'customerLevelIdText',align:'center',width:200,title:'客户等级'},
 	                  {field:'sexText',align:'center',width:200,title:'性别'},
-	                  {field:'phoneNumber',align:'center',width:200,title:'电话号码'},
-	                  {field:'createTimeText',align:'center',width:200,title:'创建时间'},
-	                  {field:'email',align:'center',width:200,title:'电子邮箱'},
-	                  {field:'agentText',align:'center',width:200,title:'代理人'},
-	                  {field:'score',align:'center',width:200,title:'积分'},
-	                  {field:'handText',align:'center',width:200,title:'经手人'},
 	                  {field:'babyMonth',align:'center',width:200,title:'宝贝月份'},
-	                  {field:'vipId',align:'center',width:200,title:'会员号'}
+	                  {field:'phoneNumber',align:'center',width:200,title:'电话号码'},
+	                  {field:'email',align:'center',width:200,title:'电子邮箱'},
+	                  {field:'score',align:'center',width:200,title:'积分'},
+	                  {field:'customerLevelIdText',align:'center',width:200,title:'客户等级'},
+	                  {field:'agentText',align:'center',width:200,title:'代理人'},
+	                  {field:'handText',align:'center',width:200,title:'经手人'},
+	                  {field:'createTimeText',align:'center',width:200,title:'创建时间'}
 	                  ]],
 	        fitColumns:true,
 	        height: 'auto',

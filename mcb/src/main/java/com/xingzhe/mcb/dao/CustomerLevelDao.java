@@ -1,11 +1,12 @@
 package com.xingzhe.mcb.dao;
 
-import com.xingzhe.mcb.domain.CustomerLevel;
-import com.xingzhe.mcb.mapper.CustomerLevelMapper;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import com.xingzhe.framework.domain.SelectBoxObj;
+import com.xingzhe.mcb.mapper.CustomerLevelMapper;
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,7 +21,7 @@ public class CustomerLevelDao {
     @Autowired
     private CustomerLevelMapper customerLevelMapper;
 
-    public List<CustomerLevel> getAllCustomerLevel() {
+    public List<SelectBoxObj> getAllCustomerLevel() {
         return customerLevelMapper.getAllCustomerLevel();
     }
 }

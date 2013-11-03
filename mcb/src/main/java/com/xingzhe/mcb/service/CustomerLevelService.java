@@ -1,8 +1,8 @@
 package com.xingzhe.mcb.service;
 
-import com.xingzhe.mcb.domain.CustomerLevel;
-
 import java.util.List;
+
+import com.xingzhe.framework.domain.SelectBoxObj;
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,5 +13,5 @@ import java.util.List;
  */
 public interface CustomerLevelService {
 
-	List<CustomerLevel> getAllCustomerLevel();
+	List<SelectBoxObj> getAllCustomerLevel();
 }

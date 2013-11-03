@@ -1,7 +1,7 @@
 package com.xingzhe.mcb.mapper;
 
-import com.xingzhe.framework.mapper.SqlMapper;
-import com.xingzhe.mcb.domain.CustomerLevel;
+import java.util.List;
+
 import org.apache.ibatis.annotations.CacheNamespace;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
@@ -9,7 +9,8 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.type.JdbcType;
 import org.mybatis.caches.ehcache.LoggingEhcache;
 
-import java.util.List;
+import com.xingzhe.framework.domain.SelectBoxObj;
+import com.xingzhe.framework.mapper.SqlMapper;
 
 /**
  * Created with IntelliJ IDEA.
@@ -26,5 +27,5 @@ public interface CustomerLevelMapper extends SqlMapper{
             @Result(column = "name",property = "name",jdbcType = JdbcType.VARCHAR,javaType = String.class)
     })
     @Select("SELECT `id`, `name` FROM `mcb`.`customer_level` t WHERE t.`is_del`=0 ORDER BY id")
-    List<CustomerLevel> getAllCustomerLevel();
+    List<SelectBoxObj> getAllCustomerLevel();
 }
