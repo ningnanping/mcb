@@ -21,34 +21,36 @@ import com.xingzhe.framework.controller.BaseController;
 import com.xingzhe.framework.domain.ActionStatus;
 import com.xingzhe.framework.domain.DataGrid;
 import com.xingzhe.mcb.domain.Customer;
-import com.xingzhe.mcb.mapper.CustomerMapper;
+import com.xingzhe.mcb.service.CustomerService;
 
 @Controller
 @RequestMapping("/customer")
 public class CustomerController extends BaseController {
-	
-	private static final Logger log=LoggerFactory.getLogger(ProductController.class);
-	
+
+	private static final Logger log = LoggerFactory
+			.getLogger(ProductController.class);
+
 	@Autowired
-	private CustomerMapper customerMapper;
-	
+	private CustomerService customerService;
+
 	@RequestMapping("/index.html")
 	public String index() {
 		return "resourse/jsp/mcb/customer";
 	}
-	
+
 	@ResponseBody
-	@RequestMapping(value = "/save.html",produces=TEXT_HTML_PRODUCES)
+	@RequestMapping(value = "/save.html", produces = TEXT_HTML_PRODUCES)
 	public String saveCustomer(HttpServletRequest request) {
-		String  name=request.getParameter("name");
-		int sex =Integer.parseInt(request.getParameter("sex")) ;
-		int customerLevelId =Integer.parseInt(request.getParameter("customerLevelId")) ;
-		int agentId =Integer.parseInt(request.getParameter("agentId")) ;
-		int handId =Integer.parseInt(request.getParameter("handId")) ;
-		int babyMonth =Integer.parseInt(request.getParameter("babyMonth")) ;
-		String  phoneNumber=request.getParameter("phoneNumber");
-		String  email=request.getParameter("email");
-		Customer o=new Customer();
+		String name = request.getParameter("name");
+		int sex = Integer.parseInt(request.getParameter("sex"));
+		int customerLevelId = Integer.parseInt(request
+				.getParameter("customerLevelId"));
+		int agentId = Integer.parseInt(request.getParameter("agentId"));
+		int handId = Integer.parseInt(request.getParameter("handId"));
+		int babyMonth = Integer.parseInt(request.getParameter("babyMonth"));
+		String phoneNumber = request.getParameter("phoneNumber");
+		String email = request.getParameter("email");
+		Customer o = new Customer();
 		o.setAgentId(agentId);
 		o.setName(name);
 		o.setSex(sex);
@@ -61,66 +63,69 @@ public class CustomerController extends BaseController {
 		o.setCreateTime(new Date());
 		log.debug(o.toString());
 		try {
-			customerMapper.saveCustomer(o);
+			customerService.saveCustomer(o);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return JSON.toJSONString(new ActionStatus(1001,"保存失败"));
+			return JSON.toJSONString(new ActionStatus(1001, "保存失败"));
 		}
-		return JSON.toJSONString(new ActionStatus(1000,"保存成功"));
+		return JSON.toJSONString(new ActionStatus(1000, "保存成功"));
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/update.html",produces=TEXT_HTML_PRODUCES)
+	@RequestMapping(value = "/update.html", produces = TEXT_HTML_PRODUCES)
 	public String update(Customer o) {
 		log.debug(o.toString());
 		try {
-			customerMapper.updateCustomer(o);
+			customerService.updateCustomer(o);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return JSON.toJSONString(new ActionStatus(1001,"保存失败"));
+			return JSON.toJSONString(new ActionStatus(1001, "保存失败"));
 		}
-		
-		return JSON.toJSONString(new ActionStatus(1000,"保存成功"));
+
+		return JSON.toJSONString(new ActionStatus(1000, "保存成功"));
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "/del.html", produces = TEXT_HTML_PRODUCES)
-	public String del(@RequestParam(value="id",required=false,defaultValue="-1")int id) {
-		if(id!=-1){
+	public String del(
+			@RequestParam(value = "id", required = false, defaultValue = "-1") int id) {
+		if (id != -1) {
 			try {
-				customerMapper.delCustomer(id);
+				customerService.delCustomer(id);
 			} catch (Exception e) {
 				e.printStackTrace();
-				return JSON.toJSONString(new ActionStatus(1001,"保存失败"));
+				return JSON.toJSONString(new ActionStatus(1001, "保存失败"));
 			}
-			
-			return JSON.toJSONString(new ActionStatus(1000,"保存成功"));
-		}else{
-			return JSON.toJSONString(new ActionStatus(1002,"ID不合法操作失误"));
+
+			return JSON.toJSONString(new ActionStatus(1000, "保存成功"));
+		} else {
+			return JSON.toJSONString(new ActionStatus(1002, "ID不合法操作失误"));
 		}
 	}
-	@ResponseBody
-	@RequestMapping(value="/list.json",produces= MediaType.APPLICATION_JSON_VALUE)
-	public Object getSelectOrder(@RequestParam(defaultValue = "1", required = true, value = "page") int page,
-								 @RequestParam(defaultValue = "10", required = true, value = "rows") int rows) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		int total = customerMapper.selectCustomerListForCount(map);
 
-		//分页的参数
+	@ResponseBody
+	@RequestMapping(value = "/list.json", produces = MediaType.APPLICATION_JSON_VALUE)
+	public Object getSelectOrder(
+			@RequestParam(defaultValue = "1", required = true, value = "page") int page,
+			@RequestParam(defaultValue = "10", required = true, value = "rows") int rows) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		int total = customerService.selectCustomerListForCount(map);
+
+		// 分页的参数
 		// start 代表从那个开始取
-		//end 代表取多少个
-		map.put("start", mysqlGetStart(page,rows));
+		// end 代表取多少个
+		map.put("start", mysqlGetStart(page, rows));
 		map.put("end", rows);
-		List<Customer> list = customerMapper.selectCustomerListForPage(map);
+		List<Customer> list = customerService.selectCustomerListForPage(map);
 
 		return new DataGrid(total, list);
 	}
-	
-	private String getVipId(){
-		String s="000000000";
-		s+=customerMapper.getVipId();
-		s=s.substring(s.length() -9, s.length());
-		s="C"+s;
+
+	private String getVipId() {
+		String s = "000000000";
+		s += customerService.getVipId();
+		s = s.substring(s.length() - 9, s.length());
+		s = "C" + s;
 		return s;
 	}
 }
