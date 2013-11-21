@@ -15,6 +15,7 @@
 
 	<import resource="com/xingzhe/framework/applicationContext-datasource.xml" />
 	<import resource="com/xingzhe/framework/applicationContext-ibatis3.xml" />
+	<import resource="com/xingzhe/framework/applicationContext-job.xml" />
 
 
 

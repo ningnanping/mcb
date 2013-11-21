@@ -18,6 +18,9 @@ import com.xingzhe.framework.util.PropertiesReaderUtil;
 @Configuration
 public class RedisBeanConfig {
 	private Logger logger = LoggerFactory.getLogger(RedisBeanConfig.class);
+	
+	public static boolean REDIS_USE=false;
+    public static boolean REDIS_INIT_USE =false;
 
 	public RedisBeanConfig() {
 		logger.debug("初始化......RedisBeanConfig........");
@@ -32,8 +35,11 @@ public class RedisBeanConfig {
 		j.setMaxActive(Integer.parseInt(pro.getProperty("redis.pool.maxActive")));
 		j.setMaxIdle(Integer.parseInt(pro.getProperty("redis.pool.maxIdle")));
 		j.setMaxWait(Integer.parseInt(pro.getProperty("redis.pool.maxWait")));
-		j.setTestOnBorrow(Boolean.parseBoolean(pro
-				.getProperty("redis.pool.testOnBorrow")));
+		j.setTestOnBorrow(Boolean.parseBoolean(pro.getProperty("redis.pool.testOnBorrow")));
+		RedisBeanConfig.REDIS_INIT_USE=Boolean.parseBoolean(pro.getProperty("redis.init.use")==null?"FALSE":pro.getProperty("redis.init.use"));
+		if(RedisBeanConfig.REDIS_INIT_USE){
+		    RedisBeanConfig.REDIS_USE=Boolean.parseBoolean(pro.getProperty("redis.use")==null?"FALSE":pro.getProperty("redis.use"));
+		}
 		return j;
 	}
 

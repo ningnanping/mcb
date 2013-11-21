@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.xingzhe.framework.common;
+package com.xingzhe.framework.common.response;
 
 /**
  * 结果基础返回结果类

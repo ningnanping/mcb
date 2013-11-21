@@ -1,4 +1,4 @@
-package com.xingzhe.framework.common;
+package com.xingzhe.framework.common.response;
 
 import com.alibaba.fastjson.JSON;
 
