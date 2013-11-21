@@ -64,6 +64,16 @@ public interface RedisCache extends BaseCache {
      * @return
      */
     boolean putMap(String key, String field, Serializable value);
+    
+    /**
+     * Hash中set一个field，实现新增或修改
+     * 
+     * @param key
+     * @param field
+     * @param value
+     * @return
+     */
+    boolean hset(final String key, final String field,final Serializable value);
 
     /**
      * 批量添加key,value.

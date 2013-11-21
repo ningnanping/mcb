@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.xingzhe.common.dao.UserDao;
 import com.xingzhe.common.domain.User;
-import com.xingzhe.common.dao.redis.UserRedisDao;
 import com.xingzhe.common.service.UserService;
 
 @Service("userService")
@@ -20,21 +19,10 @@ public class UserServiceImpl implements UserService
     @Autowired
     private UserDao userDao;
     
-    @Autowired
-    private UserRedisDao userRedisDao;
     
     public List<User> getUserByName(String userName)
     {
-        List<User> list = userRedisDao.getUserList(userName);
-        if (list == null || list.size() == 0)
-        {
-            list = userDao.getUserByName(userName);
-            if (list != null && list.size() != 0)
-            {
-                userRedisDao.saveUserList(userName, list);
-            }
-        }
-        return list;
+        	return  userDao.getUserByName(userName);
     }
     
     @Override
@@ -43,19 +31,12 @@ public class UserServiceImpl implements UserService
         try
         {
             userDao.updatePassword(password, userName);
-            List<User> list=userRedisDao.getUserList(userName);
-            if(list!=null&&list.size()!=0){
-                list.get(0).setPassword(password);
-                userRedisDao.saveUserList(userName, list);
-            }else{
-                return false;
-            }
-            return true;
         }
         catch (Exception e)
         {
             log.error(e.toString()); 
             return false;
         }
+		return true;
     }
 }

@@ -1,5 +1,6 @@
 package com.xingzhe.framework.util;
 
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -9,6 +10,7 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -115,7 +117,8 @@ public class HessianUtil {
      * @return object 返序化的对象
      * @throws IOException
      */
-    public static  Object deserialize(byte[] by) throws IOException {
+    @SuppressWarnings("unchecked")
+    public static <T extends Object> T deserialize(byte[] by) throws IOException {
         if (by == null) {
             throw new NullPointerException();
         }
@@ -124,7 +127,7 @@ public class HessianUtil {
         Object obj = hi.readObject();
         hi.close();
         is.close();
-        return  obj;
+        return (T) obj;
     }
     
     /**
@@ -134,19 +137,19 @@ public class HessianUtil {
      * @return
      * @throws IOException
      */
-    public static   List<Object> deserialize(List<byte[]> rlist) throws IOException {
+    public static <T extends Object> List<T> deserialize(List<byte[]> rlist) throws IOException {
         if (rlist == null) {
             throw new NullPointerException();
         }
 
-        List<Object> list = new ArrayList<Object>();
-        Object obj=null;
+        List<T> list = new ArrayList<T>();
         for (byte[] bs : rlist) {
             if (bs == null) {
                 list.add(null);
                 continue;
             }
-            obj =  deserialize(bs);
+            @SuppressWarnings("unchecked")
+            T obj = (T) deserialize(bs);
             list.add(obj);
         }
 
@@ -161,19 +164,19 @@ public class HessianUtil {
      * @return
      * @throws IOException
      */
-    public static   List<Object> deserializeZ(Set<byte[]> rSet) throws IOException {
+    public static <T extends Object> List<T> deserializeZ(Set<byte[]> rSet) throws IOException {
         if (rSet == null) {
             throw new NullPointerException();
         }
 
-        List<Object> list = new ArrayList<Object>();
-        Object obj=null;
+        List<T> list = new ArrayList<T>();
         for (byte[] bs : rSet) {
             if (bs == null) {
-                //list.add(null);
+                list.add(null);
                 continue;
             }
-            obj =  deserialize(bs);
+            @SuppressWarnings("unchecked")
+            T obj = (T) deserialize(bs);
             list.add(obj);
         }
         return list;
@@ -194,8 +197,8 @@ public class HessianUtil {
         Map<String, Serializable> dMap = new HashMap<String, Serializable>();
 
         for (Entry<byte[], byte[]> entry : map.entrySet()) {
-            Object obj = deserialize(entry.getValue());
-            dMap.put(new String(entry.getKey()), (Serializable) obj);
+            Serializable obj = deserialize(entry.getValue());
+            dMap.put(new String(entry.getKey()), obj);
         }
 
         return dMap;
@@ -337,6 +340,7 @@ public class HessianUtil {
 
     /**
      * 验证有效性.
+     * 
      * @param objectFileDirectory 文件夹目录.
      * @return file 文件对象.
      */
@@ -348,4 +352,17 @@ public class HessianUtil {
         return objDirFile;
     }
 
+    public static void main(String[] args) throws IOException {
+        Map<String, Serializable> map = new HashMap<String, Serializable>();
+        map.put("a", "c");
+        map.put("b", "c");
+        map.put("c", "c");
+        map.put("d", "c");
+        map.put("d２２", "c");
+
+        byte[][] bytes = mapToByteArray(map);
+        for (int i = 0; i < bytes.length; i++) {
+            System.out.println(Arrays.toString(bytes[i]));
+        }
+    }
 }

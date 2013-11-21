@@ -5,6 +5,7 @@ import java.io.Serializable;
 /**
  * 类BaseCache.java的实现描述：缓存基础接口
  * 
+ * @author liulin 2012-11-29 上午12:18:40
  */
 public interface BaseCache {
 

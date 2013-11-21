@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.xingzhe.framework.cache.redis.NeedRedisCached;
 import com.xingzhe.framework.domain.SelectBoxObj;
 import com.xingzhe.mcb.dao.CustomerLevelDao;
-import com.xingzhe.mcb.dao.redis.CustomerLevelRedisDao;
 import com.xingzhe.mcb.service.CustomerLevelService;
 
 /**
@@ -24,22 +24,13 @@ public class CustomerLevelServiceImpl implements CustomerLevelService {
     @Autowired
     private CustomerLevelDao customerLevelDao;
 
-    @Autowired
-    private CustomerLevelRedisDao customerLevelRedisDao;
-
     /**
      * 在缓存中
      * */
     @Override
+    @NeedRedisCached(type="HASH",returnType=SelectBoxObj.class,endKey="COM.XINGZHE.MCB.DOMAIN.CUSTOMERLEVEL",isArray=true)
     public List<SelectBoxObj> getAllCustomerLevel() {
-        List<SelectBoxObj> list = customerLevelRedisDao.getAllCustomerLevel();
-        if (list == null || list.size() == 0) {
-            list = customerLevelDao.getAllCustomerLevel();
-            if (list != null && list.size() != 0) {
-                customerLevelRedisDao.saveAllCustomerLevel(list);
-            }
-        }
-        return list;
+    	 return customerLevelDao.getAllCustomerLevel();
     }
 
 }

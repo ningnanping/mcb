@@ -18,37 +18,39 @@ import com.xingzhe.framework.util.PropertiesReaderUtil;
 @Configuration
 public class RedisBeanConfig {
 	private Logger logger = LoggerFactory.getLogger(RedisBeanConfig.class);
+
 	public RedisBeanConfig() {
 		logger.debug("初始化......RedisBeanConfig........");
 		PropertiesReaderUtil.init("redis.properties");
 	}
-	
-	@Bean(name="jedisPoolConfig")
-	public JedisPoolConfig getJedisPoolConfig(){
+
+	@Bean(name = "jedisPoolConfig")
+	public JedisPoolConfig getJedisPoolConfig() {
 		logger.debug("初始化  JedisPoolConfig ");
 		Properties pro = PropertiesReaderUtil.getPro();
-		JedisPoolConfig j=new JedisPoolConfig();
+		JedisPoolConfig j = new JedisPoolConfig();
 		j.setMaxActive(Integer.parseInt(pro.getProperty("redis.pool.maxActive")));
 		j.setMaxIdle(Integer.parseInt(pro.getProperty("redis.pool.maxIdle")));
 		j.setMaxWait(Integer.parseInt(pro.getProperty("redis.pool.maxWait")));
-		j.setTestOnBorrow(Boolean.parseBoolean(pro.getProperty("redis.pool.testOnBorrow")));
+		j.setTestOnBorrow(Boolean.parseBoolean(pro
+				.getProperty("redis.pool.testOnBorrow")));
 		return j;
 	}
-	
-	@Bean(name="shardedJedisPool")
-	public ShardedJedisPool getShardedJedisPool(){
-		List<JedisShardInfo> list=new ArrayList<JedisShardInfo>();
+
+	@Bean(name = "shardedJedisPool")
+	public ShardedJedisPool getShardedJedisPool() {
+		List<JedisShardInfo> list = new ArrayList<JedisShardInfo>();
 		list.add(getJedisShardInfo());
-		ShardedJedisPool sj=new ShardedJedisPool(getJedisPoolConfig(), list);
+		ShardedJedisPool sj = new ShardedJedisPool(getJedisPoolConfig(), list);
 		return sj;
 	}
-	
-	@Bean(name="jedisShardInfo1")
-	public JedisShardInfo getJedisShardInfo(){
+
+	@Bean(name = "jedisShardInfo1")
+	public JedisShardInfo getJedisShardInfo() {
 		Properties pro = PropertiesReaderUtil.getPro();
-		String ip=pro.getProperty("redis1.ip");
-		String port=pro.getProperty("redis1.port");
-		JedisShardInfo ji=new JedisShardInfo(ip,Integer.parseInt(port));
+		String ip = pro.getProperty("redis1.ip");
+		String port = pro.getProperty("redis1.port");
+		JedisShardInfo ji = new JedisShardInfo(ip, Integer.parseInt(port));
 		return ji;
 	}
 }
