@@ -63,6 +63,7 @@ public class RedisCacheAspect implements Ordered
             String preKey = null;
             int[] keyArgs = {};
             boolean isArray = false;
+            int time = -1;
             for (Method m : method)
             {
                 if (m.getName().equals(methodName))
@@ -77,6 +78,7 @@ public class RedisCacheAspect implements Ordered
                         preKey = needRedisCached.preKey();
                         keyArgs = needRedisCached.keyArgs();
                         isArray = needRedisCached.isArray();
+                        time = needRedisCached.time();
                         break;
                     }
                 }
@@ -89,15 +91,7 @@ public class RedisCacheAspect implements Ordered
                 {
                     if (StringUtils.isNotBlank(endKey))
                     {
-                        try
-                        {
-                            value = redisCacheManager.getMap("COMMON", endKey);
-                        }
-                        catch (Exception e)
-                        {
-                            RedisBeanConfig.REDIS_USE = false;
-                            log.info("redis is  down !please check...");
-                        }
+                        value = redisCacheManager.getMap("COMMON", endKey);
                     }
                     else
                     {
@@ -124,7 +118,14 @@ public class RedisCacheAspect implements Ordered
             }
             else if ("STRING".equalsIgnoreCase(type))
             {
-                // TODO
+                StringBuilder key = new StringBuilder(50);
+                key.append(preKey).append("_").append(endKey).append("_");
+                for (int i : keyArgs)
+                {
+                    key.append(arguments[i - 1].toString()).append("_");
+                }
+                redisCacheManager.get(key.toString());
+                
             }
             else if ("LIST".equalsIgnoreCase(type))
             {
@@ -166,16 +167,7 @@ public class RedisCacheAspect implements Ordered
                         {
                             if (StringUtils.isNotBlank(endKey))
                             {
-                                try
-                                {
-                                    redisCacheManager.putMap("COMMON", endKey, JSON.toJSONString(value));
-                                }
-                                catch (Exception e)
-                                {
-                                    RedisBeanConfig.REDIS_USE = false;
-                                    log.info("redis is  down !please check...");
-                                }
-                                
+                                redisCacheManager.putMap("COMMON", endKey, JSON.toJSONString(value));
                             }
                             else
                             {
@@ -189,20 +181,25 @@ public class RedisCacheAspect implements Ordered
                             {
                                 keys.append(arguments[i - 1].toString()).append("_");
                             }
-                            try
-                            {
-                                redisCacheManager.putMap(preKey, keys.toString(), JSON.toJSONString(value));
-                            }
-                            catch (Exception e)
-                            {
-                                RedisBeanConfig.REDIS_USE = false;
-                                log.info("redis is  down !please check...");
-                            }
+                            redisCacheManager.putMap(preKey, keys.toString(), JSON.toJSONString(value));
                         }
                     }
                     else if ("STRING".equalsIgnoreCase(type))
                     {
-                        // TODO
+                        StringBuilder key = new StringBuilder(50);
+                        key.append(preKey).append("_").append(endKey).append("_");
+                        for (int i : keyArgs)
+                        {
+                            key.append(arguments[i - 1].toString()).append("_");
+                        }
+                        if (time != -1)
+                        {
+                            redisCacheManager.put(key.toString(), JSON.toJSONString(value));
+                        }
+                        else
+                        {
+                            redisCacheManager.put(key.toString(), JSON.toJSONString(value), time);
+                        }
                     }
                     else if ("LIST".equalsIgnoreCase(type))
                     {
@@ -221,7 +218,8 @@ public class RedisCacheAspect implements Ordered
             return value;
         }
         else
-        {// 执行hbase查询
+        {
+            // 执行hbase查询
             return pjp.proceed();
         }
     }

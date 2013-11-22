@@ -10,7 +10,7 @@
     </appender>
 
     <appender name="file" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="File" value="log/xingzhe.log"/>
+        <param name="File" value="../log/xingzhe.log"/>
         <param name="Append" value="true"/>
         <!-- 以日为单位输出LOG文件，每日输出一个LOG文件 -->
         <param name="DatePattern" value="'.'yyyy-MM-dd"/>
@@ -21,7 +21,7 @@
     </appender>
 
     <!--定义本系统的日志输出级别 -->
-    <logger name="com.xingzhe">
+    <logger name="com.xingzhe" >
         <level value="debug"/>
     </logger>
 
@@ -67,6 +67,9 @@
     </logger>
 
     <logger name="org.springframework.test">
+        <level value="info"/>
+    </logger>
+    <logger name="org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor">
         <level value="info"/>
     </logger>
 

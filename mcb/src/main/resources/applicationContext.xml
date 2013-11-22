@@ -16,15 +16,6 @@
 	<import resource="com/xingzhe/framework/applicationContext-datasource.xml" />
 	<import resource="com/xingzhe/framework/applicationContext-ibatis3.xml" />
 	<import resource="com/xingzhe/framework/applicationContext-job.xml" />
-
-
-
-	<bean id="RedisCacheAspect" class="com.xingzhe.framework.cache.redis.RedisCacheAspect">
-		<property name="orderValue" value="3" />
-	</bean>
 	
-	<!-- 切面申明配置 -->
-	<aop:aspectj-autoproxy>
-		<aop:include name="RedisCacheAspect" />
-	</aop:aspectj-autoproxy>
+	<aop:aspectj-autoproxy proxy-target-class="true"/>
 </beans>

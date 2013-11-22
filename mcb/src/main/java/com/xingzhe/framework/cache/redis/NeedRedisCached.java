@@ -34,4 +34,10 @@ public @interface NeedRedisCached
     
     String endKey() default "";
     
+    /**
+     * 设置失效时间
+     * @return
+     */
+    int time() default -1;
+    
 }
