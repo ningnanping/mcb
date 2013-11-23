@@ -52,8 +52,6 @@ public class RedisBeanConfig
     public JedisPoolConfig getJedisPoolConfig()
     {
         logger.debug("初始化  JedisPoolConfig ");
-        logger.debug(redis1Ip);
-        logger.debug("" + redisInitUse);
         JedisPoolConfig j = new JedisPoolConfig();
         j.setMaxActive(redisPoolMaxActive);
         j.setMaxIdle(redisPoolMaxIdle);

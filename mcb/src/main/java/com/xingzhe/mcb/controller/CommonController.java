@@ -12,32 +12,36 @@ import com.xingzhe.mcb.service.EmployeeTypeService;
 
 @Controller
 @RequestMapping(value = "/common")
-public class CommonController extends BaseController {
-	@Autowired
-	private EmployeeTypeService employeeTypeService;
-
-	@Autowired
-	private CustomerLevelService customerLevelService;
-
-	@Autowired
-	private EmployeeService employeeService;
-
-	@ResponseBody
-	@RequestMapping(value = "/employeeType.json")
-	public Object getAllEmployeeType() {
-		return employeeTypeService.getAllEmployeeType();
-	}
-
-	@ResponseBody
-	@RequestMapping(value = "/customerLevel.json")
-	public Object getAllCustomerLevel() {
-		return customerLevelService.getAllCustomerLevel();
-	}
-
-	@ResponseBody
-	@RequestMapping(value = "/employee.json")
-	public Object getAllEmployee() {
-		return employeeService.getAllEmployee();
-	}
-
+public class CommonController extends BaseController
+{
+    @Autowired
+    private EmployeeTypeService employeeTypeService;
+    
+    @Autowired
+    private CustomerLevelService customerLevelService;
+    
+    @Autowired
+    private EmployeeService employeeService;
+    
+    @ResponseBody
+    @RequestMapping(value = "/employeeType.json")
+    public Object getAllEmployeeType()
+    {
+        return employeeTypeService.getAllEmployeeType();
+    }
+    
+    @ResponseBody
+    @RequestMapping(value = "/customerLevel.json")
+    public Object getAllCustomerLevel()
+    {
+        return customerLevelService.getAllCustomerLevel();
+    }
+    
+    @ResponseBody
+    @RequestMapping(value = "/employee.json")
+    public Object getAllEmployee()
+    {
+        return employeeService.getAllEmployee();
+    }
+    
 }

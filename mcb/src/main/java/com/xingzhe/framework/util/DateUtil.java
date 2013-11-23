@@ -523,27 +523,4 @@ public class DateUtil
         return str.toString();
 
     }
-    
-//    public static void main(String[] args) throws ParseException
-//    {
-//        
-//        System.out.println(getFirstDay(true));
-//        System.out.println(getFirstDay(false));
-//        System.out.println(getLastDay(true));
-//        System.out.println(getLastDay(false));
-//        // System.out.println(addDateInterval(getCurrDate(), getCurrNextDayDate(), getCurrDate()));
-//        // System.out.println(isSameDay(new Date(), getCurrNextDayDate()));
-//        // System.out.println(getCurrDateFixTime(24, 00, 00));
-//        // String s = dateToStr(getCurrUpMonthDate(), YYYY_MM_DD_HH_MM_SS);
-//        // System.out.println(s);
-//        // System.out.println(getNextDayDate(new Date(), DateUtil.YYYY_MM_DD));
-//        // System.out.println(getCurrNextDayDate(3));
-//        
-//        //        Date comp = strToDate("2013-04-05 11:11:11", YYYY_MM_DD_HH_MM_SS);
-//        //        System.out.println(isLate(comp)); 
-//        //        comp = strToDate("2013-07-05 11:11:11", YYYY_MM_DD_HH_MM_SS);
-//        //        System.out.println(isLate(comp));
-//        //
-//        //        System.out.println(getIntervalMilSeconds("2012-02-11 2:02:36", "2012-02-11 3:02:36", DateUtil.YYYY_MM_DD_HH_MM_SS));
-//    }
 }

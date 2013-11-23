@@ -17,30 +17,33 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/order")
-public class OrderController extends BaseController {
-
-	@Autowired
-	private OrderService orderService;
-
-	@RequestMapping("/index.html")
-	public String index() {
-		return "resourse/jsp/mcb/order";
-	}
-
-	@ResponseBody
-	@RequestMapping(value="/list.json",produces= MediaType.APPLICATION_JSON_VALUE)
-	public Object getSelectOrder(@RequestParam(defaultValue = "1", required = true, value = "page") int page,
-								 @RequestParam(defaultValue = "10", required = true, value = "rows") int rows) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		int total = orderService.selectOrderCount(map);
-
-		//分页的参数
-		// start 代表从那个开始取
-		//end 代表取多少个
-		map.put("start", mysqlGetStart(page,rows));
-		map.put("end", rows);
-		List<Order> list = orderService.selectOrderList(map);
-
-		return new DataGrid(total, list);
-	}
+public class OrderController extends BaseController
+{
+    
+    @Autowired
+    private OrderService orderService;
+    
+    @RequestMapping("/index.html")
+    public String index()
+    {
+        return "resourse/jsp/mcb/order";
+    }
+    
+    @ResponseBody
+    @RequestMapping(value = "/list.json", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Object getSelectOrder(@RequestParam(defaultValue = "1", required = true, value = "page") int page,
+            @RequestParam(defaultValue = "10", required = true, value = "rows") int rows)
+    {
+        Map<String, Object> map = new HashMap<String, Object>();
+        int total = orderService.selectOrderCount(map);
+        
+        //分页的参数
+        //start 代表从那个开始取
+        //end 代表取多少个
+        map.put("start", mysqlGetStart(page, rows));
+        map.put("end", rows);
+        List<Order> list = orderService.selectOrderList(map);
+        
+        return new DataGrid(total, list);
+    }
 }

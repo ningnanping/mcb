@@ -9,7 +9,6 @@ import java.io.ObjectOutputStream;
 /**
  * 类SerializeUtil.java的实现描述：序列化工具类
  * 
- * @author xuzhenhai 2012-11-29 下午3:07:09
  */
 public class SerializeUtil {
 

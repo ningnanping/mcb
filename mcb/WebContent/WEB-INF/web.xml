@@ -19,6 +19,7 @@
 		</init-param>
 		<!-- 这个顺序不能为0 否者很容易不能访问 -->
 		<load-on-startup>2</load-on-startup>
+		<async-supported>true</async-supported>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>applicationContext-Springmvc</servlet-name>
@@ -28,6 +29,7 @@
 	<servlet>
 		<servlet-name>DruidStatView</servlet-name>
 		<servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+		<async-supported>true</async-supported>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>DruidStatView</servlet-name>
@@ -37,6 +39,7 @@
 	<filter>
 		<filter-name>Spring character encoding filter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<async-supported>true</async-supported>
 		<init-param>
 			<param-name>encoding</param-name>
 			<param-value>utf-8</param-value>
@@ -50,6 +53,7 @@
 	<filter>
 		<filter-name>DruidWebStatFilter</filter-name>
 		<filter-class>com.alibaba.druid.support.http.WebStatFilter</filter-class>
+		<async-supported>true</async-supported>
 		<init-param>
 			<param-name>exclusions</param-name>
 			<param-value>*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*</param-value>

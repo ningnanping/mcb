@@ -1,5 +1,7 @@
 package com.xingzhe.common.controller;
 
+import java.util.concurrent.Callable;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,26 +15,53 @@ import com.xingzhe.common.dao.redis.UserLoginCache;
 import com.xingzhe.framework.util.CookieUtil;
 
 @Controller
-public class IndexController {
-
-	@Autowired
-	private UserLoginCache  userLoginCache;
-	
-	@RequestMapping("/index.html")
-	public Object index(HttpServletRequest request, HttpServletResponse response) {
-		String acessToken=CookieUtil.getInstance().getCookieValueByName(request, "acessToken");
-		String platFrom=CookieUtil.getInstance().getCookieValueByName(request, "platFrom");
-		String userName=CookieUtil.getInstance().getCookieValueByName(request, "userName");
-		String uuid=CookieUtil.getInstance().getCookieValueByName(request, "uuid");
-		String acessTokenfrom=null;
-		if(userName==null||platFrom==null||uuid==null){
-			return  "resourse/jsp/common/login";  
-		}
-		acessTokenfrom =userLoginCache.getAcessToken(userName, platFrom, uuid);
-		if(StringUtils.isBlank(acessToken)||!acessToken.equals(acessTokenfrom)){
-			return  "resourse/jsp/common/login";   
-		}
-		return new ModelAndView("resourse/jsp/common/main","userName",userName);
-	}
-
+public class IndexController
+{
+    
+    @Autowired
+    private UserLoginCache userLoginCache;
+    
+    @RequestMapping("/index.html")
+    public Callable<Object> index(HttpServletRequest request, HttpServletResponse response)
+    {
+        String acessToken = CookieUtil.getInstance().getCookieValueByName(request, "acessToken");
+        String platFrom = CookieUtil.getInstance().getCookieValueByName(request, "platFrom");
+        final String userName = CookieUtil.getInstance().getCookieValueByName(request, "userName");
+        String uuid = CookieUtil.getInstance().getCookieValueByName(request, "uuid");
+        String acessTokenfrom = null;
+        if (userName == null || platFrom == null || uuid == null)
+        {
+            return new Callable<Object>()
+            {
+                @Override
+                public Object call() throws Exception
+                {
+                    return "resourse/jsp/common/login";
+                }
+            };
+        }
+        acessTokenfrom = userLoginCache.getAcessToken(userName, platFrom, uuid);
+        if (StringUtils.isBlank(acessToken) || !acessToken.equals(acessTokenfrom))
+        {
+            return new Callable<Object>()
+            {
+                @Override
+                public Object call() throws Exception
+                {
+                    return "resourse/jsp/common/login";
+                }
+            };
+            
+        }
+        return new Callable<Object>()
+        {
+            @Override
+            public Object call() throws Exception
+            {
+                return new ModelAndView("resourse/jsp/common/main", "userName", userName);
+            }
+        };
+        
+    }
+    
 }

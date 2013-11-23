@@ -10,7 +10,6 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,7 +26,6 @@ import com.caucho.hessian.io.HessianOutput;
 /**
  * 类HessianUtil.java的实现描述：hessian操作对象的序列化和反序列化的工具类。
  * 
- * @author liulin 2012-11-29 上午10:55:02
  */
 public class HessianUtil {
 
@@ -350,19 +348,5 @@ public class HessianUtil {
             return null;
         }
         return objDirFile;
-    }
-
-    public static void main(String[] args) throws IOException {
-        Map<String, Serializable> map = new HashMap<String, Serializable>();
-        map.put("a", "c");
-        map.put("b", "c");
-        map.put("c", "c");
-        map.put("d", "c");
-        map.put("d２２", "c");
-
-        byte[][] bytes = mapToByteArray(map);
-        for (int i = 0; i < bytes.length; i++) {
-            System.out.println(Arrays.toString(bytes[i]));
-        }
     }
 }

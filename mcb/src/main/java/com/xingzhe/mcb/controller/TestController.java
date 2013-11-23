@@ -9,14 +9,16 @@ import com.xingzhe.mcb.service.TestService;
 
 @Controller
 @RequestMapping("/test")
-public class TestController {
-	
-	@Autowired
-	private TestService  testService;
-	
-	@ResponseBody
-	@RequestMapping("/index.json")
-	public Object get(){
-		return testService.getOne();
-	}
+public class TestController
+{
+    
+    @Autowired
+    private TestService testService;
+    
+    @ResponseBody
+    @RequestMapping("/index.json")
+    public Object get()
+    {
+        return testService.getOne();
+    }
 }
