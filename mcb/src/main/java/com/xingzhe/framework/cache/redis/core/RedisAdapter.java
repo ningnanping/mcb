@@ -26,12 +26,10 @@ import com.xingzhe.framework.util.HessianUtil;
 /**
  * 类RedisAdapter.java的实现描述：Redis client实现
  * 
- * @author liulin 2012-11-29 上午12:22:23
  */
 @Repository
 public class RedisAdapter implements RedisCache
 {
-    
     private static final Logger logger = Logger.getLogger(RedisAdapter.class);
     
     public static final long ONE_MILLI_NANOS = 1000000L;
@@ -66,7 +64,7 @@ public class RedisAdapter implements RedisCache
                 {
                     logger.error("serialize error.[key:" + key + "]", e);
                     RedisBeanConfig.REDIS_USE = false;
-                    logger.info("redis is  down !please check...");
+                    logger.error("redis is  down !please check...");
                     return null;
                 }
                 
@@ -96,7 +94,7 @@ public class RedisAdapter implements RedisCache
                 {
                     logger.error("serialize error.[key:" + key + "]", e);
                     RedisBeanConfig.REDIS_USE = false;
-                    logger.info("redis is  down !please check...");
+                    logger.error("redis is  down !please check...");
                     return null;
                 }
             }
@@ -127,7 +125,7 @@ public class RedisAdapter implements RedisCache
                 {
                     logger.error("serialize error.[key:" + key + "]", e);
                     RedisBeanConfig.REDIS_USE = false;
-                    logger.info("redis is  down !please check...");
+                    logger.error("redis is  down !please check...");
                     return null;
                 }
                 
@@ -159,7 +157,7 @@ public class RedisAdapter implements RedisCache
                 {
                     logger.error("serialize error.[key:" + key + "]", e);
                     RedisBeanConfig.REDIS_USE = false;
-                    logger.info("redis is  down !please check...");
+                    logger.error("redis is  down !please check...");
                     return null;
                 }
                 
@@ -194,7 +192,7 @@ public class RedisAdapter implements RedisCache
                 {
                     logger.error("serialize error.[key:" + key + "]", e);
                     RedisBeanConfig.REDIS_USE = false;
-                    logger.info("redis is  down !please check...");
+                    logger.error("redis is  down !please check...");
                     return null;
                 }
             }
@@ -223,7 +221,7 @@ public class RedisAdapter implements RedisCache
                 {
                     logger.error("serialize error.[key:" + key + "]", e);
                     RedisBeanConfig.REDIS_USE = false;
-                    logger.info("redis is  down !please check...");
+                    logger.error("redis is  down !please check...");
                     return null;
                 }
             }
@@ -256,7 +254,7 @@ public class RedisAdapter implements RedisCache
                 {
                     logger.error("serialize error.[key:" + key + "]", e);
                     RedisBeanConfig.REDIS_USE = false;
-                    logger.info("redis is  down !please check...");
+                    logger.error("redis is  down !please check...");
                     return null;
                 }
             }
@@ -291,7 +289,7 @@ public class RedisAdapter implements RedisCache
                 {
                     logger.error("serialize error.[key:" + key + "]", e);
                     RedisBeanConfig.REDIS_USE = false;
-                    logger.info("redis is  down !please check...");
+                    logger.error("redis is  down !please check...");
                     return null;
                 }
             }
@@ -331,7 +329,7 @@ public class RedisAdapter implements RedisCache
                 {
                     logger.error("serialize error.[map:" + map + "]", e);
                     RedisBeanConfig.REDIS_USE = false;
-                    logger.info("redis is  down !please check...");
+                    logger.error("redis is  down !please check...");
                     return null;
                 }
             }
@@ -389,7 +387,7 @@ public class RedisAdapter implements RedisCache
                 {
                     logger.error("deserialize error.[key:" + key + "]", e);
                     RedisBeanConfig.REDIS_USE = false;
-                    logger.info("redis is  down !please check...");
+                    logger.error("redis is  down !please check...");
                     return null;
                 }
             }
@@ -427,7 +425,7 @@ public class RedisAdapter implements RedisCache
                 {
                     logger.error("deserialize error.[key:" + key + "]", e);
                     RedisBeanConfig.REDIS_USE = false;
-                    logger.info("redis is  down !please check...");
+                    logger.error("redis is  down !please check...");
                     return null;
                 }
             }
@@ -467,7 +465,7 @@ public class RedisAdapter implements RedisCache
                 {
                     logger.error("deserialize error.[key:" + key + "]", e);
                     RedisBeanConfig.REDIS_USE = false;
-                    logger.info("redis is  down !please check...");
+                    logger.error("redis is  down !please check...");
                     return null;
                 }
             }
@@ -504,7 +502,7 @@ public class RedisAdapter implements RedisCache
                 {
                     logger.error("deserialize error.[key:" + keys + "]", e);
                     RedisBeanConfig.REDIS_USE = false;
-                    logger.info("redis is  down !please check...");
+                    logger.error("redis is  down !please check...");
                     return null;
                 }
             }
@@ -536,7 +534,7 @@ public class RedisAdapter implements RedisCache
                 {
                     logger.error("deserialize error.[key:" + key + "]", e);
                     RedisBeanConfig.REDIS_USE = false;
-                    logger.info("redis is  down !please check...");
+                    logger.error("redis is  down !please check...");
                     return null;
                 }
             }
@@ -563,7 +561,7 @@ public class RedisAdapter implements RedisCache
                 catch (Exception e)
                 {
                     RedisBeanConfig.REDIS_USE = false;
-                    logger.info("redis is  down !please check...");
+                    logger.error("redis is  down !please check...");
                 }
                 return null;
             }
@@ -591,7 +589,7 @@ public class RedisAdapter implements RedisCache
                 catch (Exception e)
                 {
                     RedisBeanConfig.REDIS_USE = false;
-                    logger.info("redis is  down !please check...");
+                    logger.error("redis is  down !please check...");
                 }
                 return null;
             }
@@ -622,7 +620,7 @@ public class RedisAdapter implements RedisCache
                 catch (Exception e)
                 {
                     RedisBeanConfig.REDIS_USE = false;
-                    logger.info("redis is  down !please check...");
+                    logger.error("redis is  down !please check...");
                 }
                 return false;
             }
@@ -650,7 +648,7 @@ public class RedisAdapter implements RedisCache
                 catch (Exception e)
                 {
                     RedisBeanConfig.REDIS_USE = false;
-                    logger.info("redis is  down !please check...");
+                    logger.error("redis is  down !please check...");
                 }
                 return false;
             }
